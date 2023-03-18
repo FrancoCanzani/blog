@@ -9,7 +9,7 @@
   </head>
   <body>
     <header
-      class="h-10 font-mono bg-zinc-200 flex items-center justify-between p-8 font-semibold uppercase drop-shadow-lg shadow-indigo-50"
+      class="h-10 font-mono bg-zinc-200 flex items-center justify-between p-8 px-20 font-semibold uppercase drop-shadow-lg shadow-indigo-50"
     >
       <div class="flex items-center">
         <svg
@@ -31,15 +31,104 @@
       </div>
 
       <div class="flex items-center">
-        <a href="" class="hover:underline hover:opacity-60">Newsletter</a>
+        <a href="" class="hover:underline hover:opacity-60 mr-5 leading-relaxed"
+          >Newsletter</a
+        >
+        <a href="" class="hover:underline hover:opacity-60 mr-5">SUPPORT</a>
+        <a href="" class="hover:underline hover:opacity-60 mr-5">community</a>
+
         <a href="https://github.com/FrancoCanzani/blog" target="_blank">
           <img
             src="images/github-mark.png"
             alt="Github logo"
-            class="w-5 h-5 ml-5 hover:opacity-60"
+            class="w-5 h-5 hover:opacity-60"
           />
         </a>
       </div>
     </header>
+    <!-- Newsletter sub  -->
+    <section
+      class="bg-indigo-900 font-mono flex items-center justify-center flex-col p-8"
+    >
+      <!-- <img src="images/iconmonstr-paper-plane-1-72.png" alt="Illustration" /> -->
+
+      <h1 class="text-4xl text-white font-bold">
+        News and articles for developers
+      </h1>
+      <h2 class="text-xl text-zinc-300 text-center break-words max-w-xl my-6">
+        Subscribe to get the latest news for developers, every week. We make it
+        super easy to keep up with the news that matters.
+      </h2>
+      <div class="flex">
+        <input
+          type="email"
+          placeholder="thoughts@email.com"
+          required
+          class="px-4 py-2 rounded-sm border border-gray-300 focus:outline-none focus:border-transparent w-72"
+        />
+        <button
+          type="submit"
+          class="px-3 py-2 bg-zinc-600 text-white rounded-r-sm hover:bg-zinc-500 uppercase font-semibold"
+        >
+          I'm in
+        </button>
+      </div>
+    </section>
+    <!-- Articles  -->
+    <div>
+      <article
+        class="px-24 md:px-8 lg:px-16 xl:px-96 2xl:px-96 py-16 md:py-12 lg:py-16 xl:py-20 2xl:py-24"
+      >
+        <div class="flex items-center mb-6">
+          <img
+            src="images/Docker-Logo-2013.png"
+            alt="Docker logo"
+            class="w-24 h-14"
+          />
+          <div class="flex flex-col">
+            <a href="docker.com" target="_blank" class="hover:underline text-sm"
+              >docker.com</a
+            >
+            <a
+              href="https://www.docker.com/blog/we-apologize-we-did-a-terrible-job-announcing-the-end-of-docker-free-teams/"
+              class="hover:underline text-xl font-extrabold"
+              >Docker apologizes for their Docker Free Teams announcement</a
+            >
+            <p class="text-xs">
+              Logged by
+              <a href="" class="hover:underline text-sm font-semibold"
+                >Franco Canzani</a
+              >
+              »
+              <a href="" class="hover:underline">#docker</a>
+            </p>
+          </div>
+        </div>
+        <p>Docker CMO, Tim Anglade:</p>
+
+        <blockquote class="border-l-4 border-indigo-900 m-3 pl-4">
+          <p>
+            For those of you catching up, we recently emailed accounts that are
+            members of Free Team organizations, to let them know that they will
+            lose features unless they move to one of our supported free or paid
+            offerings. This impacted less than 2% of our users… The Docker Free
+            Team subscription was deprecated in part because it was poorly
+            targeted. In particular, it didn’t serve the open source audience as
+            well as our recently updated Docker-Sponsored Open Source program,
+            the latter offering benefits that exceed those of the deprecated
+            Free Team plan. We’d also like to clarify that public images will
+            only be removed from Docker Hub if their maintainer decides to
+            delete them. We’re sorry that our initial communications failed to
+            make this clear.
+          </p>
+        </blockquote>
+        <p>
+          Just to be clear: their apology is not about the change, it’s about
+          how they communicated the change. There’s more details in the post
+          about deleting public images, squatting names, etc, but that’s the
+          gist.
+        </p>
+      </article>
+    </div>
   </body>
 </html>
