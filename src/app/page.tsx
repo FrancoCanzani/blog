@@ -1,6 +1,8 @@
 import Header from './components/header';
 import { getSortedPostsData } from './utils/posts';
 import { Post } from './utils/types';
+import getDistanceBetweenDates from './utils/getDistanceBetweenDates';
+import Link from 'next/link';
 
 export default function Home() {
   const allPosts: Post[] = getSortedPostsData();
@@ -13,11 +15,15 @@ export default function Home() {
           {allPosts.map((post: Post) => (
             <li
               key={post.id}
-              className='flex hover:scale-105 rounded-sm border-black px-3 border-2 py-2 border-b-4 border-r-4 items-center flex-col w-full'
+              className='flex mb-4 hover:scale-105 rounded-sm border-black px-3 border-2 py-2 border-b-4 border-r-4 items-center flex-col w-full'
             >
               <div className='flex items-center w-full justify-between'>
-                <p>{post.title}</p>
-                <strong className='text-xs underline'>{post.date}</strong>
+                <Link href={`/posts/${post.id}`}>{post.title}</Link>
+                <strong className='text-xs underline'>
+                  {getDistanceBetweenDates(post.date) <= 1
+                    ? 'New'
+                    : `${getDistanceBetweenDates(post.date)} Days`}
+                </strong>
               </div>
               <div className='flex text-xs items-center gap-2 w-full'>
                 {post.keywords?.map((keyword: string) => (

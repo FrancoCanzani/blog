@@ -1,6 +1,6 @@
 ---
 title: 'When to Use Static Generation v.s. Server-side Rendering'
-date: '2022-01-02'
+date: '2023-09-28'
 keywords: ['Static generation', 'Server-side rendering']
 ---
 
