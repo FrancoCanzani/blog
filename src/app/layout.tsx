@@ -16,7 +16,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body className={`${lora.className}`}>{children}</body>
+      <body
+        className={`${lora.className} py-8 px-4 sm:px-8 md:px-16 lg:px-32 xl:px-44`}
+      >
+        {children}
+      </body>
     </html>
   );
 }
