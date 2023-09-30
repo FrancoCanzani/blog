@@ -1,18 +1,18 @@
 import Header from './components/header';
 import { getSortedPostsData } from './utils/posts';
-import { Post } from './utils/types';
+import { BlogPost } from './utils/types';
 import getDistanceBetweenDates from './utils/getDistanceBetweenDates';
 import Link from 'next/link';
 
 export default function Home() {
-  const allPosts: Post[] = getSortedPostsData();
+  const allPosts: BlogPost[] = getSortedPostsData();
 
   return (
     <main className='flex relative min-h-screen flex-col items-center'>
       <Header />
       <section className='w-full'>
         <ol className='w-full lg:gap-4 grid grid-cols-1 lg:grid-cols-2'>
-          {allPosts.map((post: Post) => (
+          {allPosts.map((post: BlogPost) => (
             <li
               key={post.id}
               className='flex mb-4 hover:scale-105 rounded-sm border-black px-3 border-2 py-2 border-b-4 border-r-4 items-center flex-col w-full'

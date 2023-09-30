@@ -5,3 +5,26 @@
 body {
   background-color: #f6f3f1;
 }
+
+/* Blog post styles  */
+
+.blogPost {
+  font-size: 16px;
+}
+
+.blogPost p {
+  line-height: 1.8;
+  margin: 14px 0;
+}
+
+.blogPost pre {
+  background-color: #272822;
+  color: #f8f8f2;
+  padding: 10px;
+  border-radius: 0.3em;
+  overflow-x: auto;
+}
+
+.blogPost pre code {
+  white-space: inherit;
+}

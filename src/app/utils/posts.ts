@@ -3,11 +3,11 @@ import path from 'path';
 import matter, { GrayMatterFile } from 'gray-matter';
 import { remark } from 'remark';
 import html from 'remark-html';
-import { Post } from './types';
+import { BlogPost } from './types';
 
 const postsDirectory = path.join(process.cwd(), 'posts');
 
-export function getSortedPostsData(): Post[] {
+export function getSortedPostsData(): BlogPost[] {
   const fileNames = fs.readdirSync(postsDirectory);
   const allPostsData = fileNames.map((fileName) => {
     const id = fileName.replace(/\.md$/, '');
@@ -20,7 +20,7 @@ export function getSortedPostsData(): Post[] {
     return {
       id,
       ...matterResult.data,
-    } as Post;
+    } as BlogPost;
   });
 
   return allPostsData.sort((a, b) => {
@@ -43,7 +43,7 @@ export function getAllPostIds() {
   });
 }
 
-export async function getPostData(id: string) {
+export async function getPostData(id: string): Promise<BlogPost> {
   const fullPath = path.join(postsDirectory, `${id}.md`);
   const fileContents = fs.readFileSync(fullPath, 'utf8');
 
@@ -54,9 +54,13 @@ export async function getPostData(id: string) {
     .process(matterResult.content);
   const contentHtml = processedContent.toString();
 
-  return {
+  const completePost: BlogPost = {
     id,
+    title: matterResult.data.title,
+    date: matterResult.data.date,
+    keywords: matterResult.data.keywords,
     contentHtml,
-    ...matterResult.data,
   };
+
+  return completePost;
 }
