@@ -1,6 +1,10 @@
 import './globals.css';
+import ToggleProvider from './components/toggleProvider';
 import type { Metadata } from 'next';
 import { Lora } from 'next/font/google';
+import Footer from './components/footer';
+import Header from './components/header';
+import Navbar from './components/navbar';
 
 const lora = Lora({ subsets: ['latin'] });
 
@@ -16,10 +20,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body
-        className={`${lora.className} py-8 px-4 sm:px-8 md:px-16 lg:px-32 xl:px-44`}
-      >
-        {children}
+      <body className={`${lora.className}`}>
+        <ToggleProvider>
+          <Navbar />
+          <Header />
+          {children}
+          <Footer />
+        </ToggleProvider>
       </body>
     </html>
   );

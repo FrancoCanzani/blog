@@ -35,7 +35,7 @@ export default function SubscriptionModal({
       }}
       className={`${
         modalIsOpen ? 'block' : 'hidden'
-      } absolute top-1/2 left-1/2 transform transition-transform -translate-x-1/2 -translate-y-1/2 bg-white p-4 md:p-6 w-5/6 sm:w-4/6 md:w-1/2 lg:w-1/3 rounded-sm`}
+      } absolute z-10 top-1/2 left-1/2 transform transition-transform -translate-x-1/2 -translate-y-1/2 bg-white p-4 md:p-6 w-5/6 sm:w-4/6 md:w-1/2 lg:w-1/3 rounded-sm`}
     >
       <div className='flex items-center justify-between'>
         <h2 className='text-2xl font-bold text-gray-800'>
