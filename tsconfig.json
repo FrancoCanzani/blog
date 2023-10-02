@@ -3,6 +3,11 @@
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
+    "baseUrl": ".",
+    "paths": {
+      "contentlayer/generated": ["./.contentlayer/generated"],
+      "@/*": ["./src/*"]
+    },
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
@@ -18,9 +23,6 @@
         "name": "next"
       }
     ],
-    "paths": {
-      "@/*": ["./src/*"]
-    },
     "forceConsistentCasingInFileNames": true
   },
   "include": [
@@ -28,7 +30,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/app/utils/posts.ts"
+    "src/app/utils/posts.ts",
+    ".contentlayer/generated"
   ],
   "exclude": ["node_modules"]
 }
