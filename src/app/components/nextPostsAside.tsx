@@ -11,8 +11,12 @@ export default function NextPostsAside({ post }: { post: BlogPost }) {
     <aside className='lg:flex hidden flex-col items-start'>
       <h2 className='font-bold mb-4'>Next up...</h2>
       {filteredPosts.map((post) => (
-        <Link href={`/posts/${post.id}`} key={post.id}>
-          {post.title}
+        <Link
+          href={`/posts/${post.id}`}
+          key={post.id}
+          className='hover:underline'
+        >
+          {post.title} ↗
         </Link>
       ))}
     </aside>

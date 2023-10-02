@@ -20,7 +20,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body className={`${lora.className}`}>
+      <body
+        className={`${lora.className} bg-[#f6f3f1] dark:bg-[#282c35] dark:text-[#f6f3f1]`}
+      >
         <ToggleProvider>
           <Navbar />
           <Header />

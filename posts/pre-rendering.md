@@ -10,16 +10,3 @@ Next.js has two forms of pre-rendering: **Static Generation** and **Server-side 
 - **Server-side Rendering** is the pre-rendering method that generates the HTML on **each request**.
 
 Importantly, Next.js lets you **choose** which pre-rendering form to use for each page. You can create a "hybrid" Next.js app by using Static Generation for most pages and using Server-side Rendering for others.
-
-```
-export default function getDistanceBetweenDates(date: string) {
-  const date1 = new Date(date);
-  const today = new Date();
-
-  const timeDifference = today.getTime() - date1.getTime();
-  const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24)); // 1000 milliseconds, 60 seconds, 60 minutes, 24 hours
-
-  return daysDifference;
-}
-
-```

@@ -18,27 +18,19 @@ export default async function Post({ params }: { params: { id: string } }) {
 
   return (
     <div className='grid px-4 sm:px-8 md:px-16 grid-cols-1 lg:grid-cols-4 place-content-center justify-center'>
-      <article className='col-span-3 leading-relaxed antialiased w-full items-center flex flex-col'>
-        <div className='flex max-w-[65ch] mb-4 flex-col w-full items-center'>
-          <h1 className='font-bold text-start w-full text-4xl mb-2'>
+      <article className='col-span-3 leading-relaxed w-full items-center flex flex-col'>
+        <div className='flex max-w-[65ch] dark:prose-invert prose mb-4 flex-col w-full items-center'>
+          <h1 className='font-bold text-start w-full text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-2'>
             {post.title}
           </h1>
           <div className='flex text-xs items-center gap-2 w-full'>
-            {post.keywords?.map((keyword: string) => (
-              <span
-                key={keyword}
-                className='rounded-sm font-medium bg-amber-200 px-1 py-0.5'
-              >
-                {keyword}
-              </span>
-            ))}
-            <strong className='underline'>
+            <strong>
               {getDistanceBetweenDates(post.date) <= 1
                 ? 'New'
                 : `${getDistanceBetweenDates(post.date)} Days ago`}
             </strong>
-            {' / '}
-            <strong className='underline'>
+            •
+            <strong>
               {calculateReadingTime(post.contentHtml) <= 1
                 ? '< 1 Minute read'
                 : `${calculateReadingTime(post.contentHtml)} } minutes read`}
@@ -46,7 +38,7 @@ export default async function Post({ params }: { params: { id: string } }) {
           </div>
         </div>
         <section
-          className='max-w-[65ch] blogPost'
+          className='prose dark:prose-invert'
           dangerouslySetInnerHTML={{ __html: post.contentHtml }}
         />
         <div className='max-w-[65ch] w-full flex items'>

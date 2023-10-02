@@ -8,7 +8,7 @@ export default function SubmitButton() {
 
   return (
     <button
-      className='bg-black flex hover:shadow-md hover:shadow-neutral-400 items-center justify-center rounded-sm active:translate-y-1 py-2 w-full text-center text-white font-medium'
+      className='bg-black flex hover:shadow-md dark:shadow-neutral-800 hover:shadow-neutral-400 items-center justify-center rounded-sm active:translate-y-1 py-2 w-full text-center text-white font-medium'
       type='submit'
       aria-disabled={pending}
     >
