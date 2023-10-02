@@ -14,11 +14,11 @@ export default function PreviewPosts() {
           <Link
             href={`/posts/${post.id}`}
             key={post.id}
-            className={`mb-3 hover:shadow-md dark:shadow-neutral-800 hover:shadow-neutral-400 flex hover:scale-[1.007] rounded-sm border-black px-3 border-2 py-2 border-b-4 border-r-4 items-center flex-col w-full`}
+            className={`mb-3 hover:shadow-sm dark:shadow-neutral-800 hover:shadow-neutral-400 flex rounded-sm border-black px-3 border py-2 border-b-2 border-r-2 items-center flex-col w-full`}
           >
             <div className='flex items-center w-full justify-between'>
               <h2>{post.title}</h2>
-              <strong className='text-xs underline'>
+              <strong className='text-xs ml-2 min-w-fit'>
                 {getDistanceBetweenDates(post.date) <= 1
                   ? 'New'
                   : `${getDistanceBetweenDates(post.date)} Days`}
