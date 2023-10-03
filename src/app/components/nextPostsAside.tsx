@@ -1,19 +1,17 @@
-import { BlogPost } from '../utils/types';
-import { getSortedPostsData } from '../utils/posts';
 import Link from 'next/link';
+import { allPosts, Post } from 'contentlayer/generated';
 
-export default function NextPostsAside({ post }: { post: BlogPost }) {
-  const allPosts: BlogPost[] = getSortedPostsData();
-  const filteredPosts = allPosts.filter(
-    (postToFilter) => postToFilter.id != post.id
+export default function NextPostsAside({ post }: { post: Post }) {
+  const filteredPosts: Post[] = allPosts.filter(
+    (postToFilter) => postToFilter._id != post._id
   );
   return (
     <aside className='lg:flex hidden flex-col items-start'>
       <h2 className='font-bold mb-4'>Next up...</h2>
       {filteredPosts.map((post) => (
         <Link
-          href={`/posts/${post.id}`}
-          key={post.id}
+          href={`/posts/${post._raw.flattenedPath}`}
+          key={post._id}
           className='hover:underline'
         >
           {post.title} ↗

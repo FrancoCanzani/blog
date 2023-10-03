@@ -23,7 +23,8 @@ export const Post = defineDocumentType(() => ({
       type: 'string',
     },
     keywords: {
-      type: 'string',
+      type: 'list',
+      of: { type: 'string' },
       description: 'Keywords of the post',
     },
     published: {

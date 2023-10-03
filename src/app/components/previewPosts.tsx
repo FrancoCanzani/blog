@@ -1,13 +1,11 @@
 import Link from 'next/link';
 import { allPosts, Post } from 'contentlayer/generated';
-import { getMDXComponent } from 'next-contentlayer/hooks';
+import formatDate from '../utils/formatDate';
 
-function PostCard(post: Post) {
-  const Content = getMDXComponent(post.body.code);
-
+export function PostCard({ post }: { post: Post }) {
   return (
-    <div className='mb-8'>
-      <h2 className='text-xl'>
+    <div className='mb-4 bg-orange-200 dark:bg-orange-900 p-1 px-2 border border-orange-400 rounded-sm'>
+      <h2 className='text-base hover:underline'>
         <Link
           href={post.url}
           className='text-blue-700 hover:text-blue-900'
@@ -16,20 +14,19 @@ function PostCard(post: Post) {
           {post.title}
         </Link>
       </h2>
-      <div className='text-sm'>
-        <Content />
-      </div>
+      <span className='text-xs font-light'>{formatDate(post.date)}</span>
     </div>
   );
 }
-
-export default function Home() {
-  const posts = allPosts;
+export function PreviewPosts() {
+  // Sort date asc
+  const posts = allPosts.sort((a, b) => (a.date < b.date ? 1 : -1));
   return (
-    <div className='max-w-xl py-8 mx-auto'>
+    <section className='w-full'>
+      <h2 className='font-bold mb-4'>Latest posts</h2>
       {posts.map((post, idx) => (
-        <PostCard key={idx} {...post} />
+        <PostCard key={idx} post={post} />
       ))}
-    </div>
+    </section>
   );
 }

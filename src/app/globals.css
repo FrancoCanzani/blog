@@ -2,17 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* :root {
-  background-color: #f6f3f1;
-}
-
-[data-theme='dark'],
-[data-theme='dark'] :root {
-  background: #282c35;
-  color: #f6f3f1;
-  opacity: 85%;
-} */
-
 /* The switch - the box around the slider */
 .switch-container {
   position: relative;

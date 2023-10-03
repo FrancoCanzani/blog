@@ -1,6 +1,5 @@
 'use client';
 
-import { Mail } from 'lucide-react';
 import SubscriptionModal from './subscriptionModal';
 import { useState } from 'react';
 import ThemeSwitch from './themeSwitch';
@@ -9,7 +8,7 @@ import Link from 'next/link';
 export default function Header() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   return (
-    <header className='pt-6 pb-2 border-b dark:border-[#f6f3f1] border-black px-4 sm:px-8 md:px-16 lg:px-32 xl:px-44 flex mb-7 items-center font-medium justify-between w-full'>
+    <header className='pt-6 pb-2 border-b dark:border-[#f6f3f1] border-black px-4 flex mb-7 items-center font-medium justify-between w-full'>
       <SubscriptionModal
         modalIsOpen={modalIsOpen}
         setModalIsOpen={setModalIsOpen}
