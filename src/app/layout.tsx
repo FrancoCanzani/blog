@@ -4,7 +4,6 @@ import type { Metadata } from 'next';
 import { Lora } from 'next/font/google';
 import Footer from './components/footer';
 import Header from './components/header';
-import Navbar from './components/navbar';
 
 const lora = Lora({ subsets: ['latin'] });
 
@@ -21,12 +20,13 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body
-        className={`${lora.className} bg-[#f6f3f1] dark:bg-[#282c35] dark:text-[#f6f3f1] antialiased max-w-3xl lg:mx-auto`}
+        className={`${lora.className} bg-[#f6f3f1] dark:bg-[#0c0a09] dark:text-[#f6f3f1] antialiased max-w-3xl m-auto`}
       >
         <ToggleProvider>
-          <Navbar />
-          <Header />
-          {children}
+          <main className='p-6 pt-3 md:pt-6 min-h-screen'>
+            <Header />
+            {children}
+          </main>
           <Footer />
         </ToggleProvider>
       </body>

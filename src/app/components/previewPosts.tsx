@@ -22,7 +22,7 @@ export function PreviewPosts() {
   // Sort date asc
   const posts = allPosts.sort((a, b) => (a.date < b.date ? 1 : -1));
   return (
-    <section className='w-full'>
+    <section className='w-full mb-6'>
       <h2 className='font-bold mb-4'>Latest posts</h2>
       {posts.map((post, idx) => (
         <PostCard key={idx} post={post} />

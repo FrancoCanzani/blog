@@ -4,13 +4,17 @@ import { PostCard } from '@/app/components/previewPosts';
 import { Post, allPosts } from 'contentlayer/generated';
 import { usePathname } from 'next/navigation';
 
+// This is a catch all route that takes the param to filter the posts
 export default function Topic() {
   const pathname = usePathname();
   const parts = pathname.split('/');
   const topic = parts[parts.length - 1].replaceAll('_', ' ');
 
   const filteredPostsByTopic = allPosts.filter(
-    (post: Post) => post.keywords?.includes(topic)
+    (post: Post) =>
+      post.keywords?.some(
+        (keyword) => keyword.trim().toLowerCase() === topic.toLowerCase()
+      )
   );
 
   return (
