@@ -18,8 +18,6 @@ export default function TopicsCovered() {
     }
   });
 
-  console.log(topics);
-
   return (
     <section className='w-full mb-6'>
       <h2 className='font-bold mb-4'>Topics covered</h2>

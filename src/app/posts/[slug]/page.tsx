@@ -2,6 +2,8 @@ import { allPosts } from 'contentlayer/generated';
 import { getMDXComponent } from 'next-contentlayer/hooks';
 import { format, parseISO } from 'date-fns';
 import calculateReadingTime from '@/app/utils/calculateReadingTime';
+import CommentSection from '@/app/components/commentSection';
+import Balancer from 'react-wrap-balancer';
 
 export async function generateStaticParams() {
   const posts = allPosts;
@@ -21,24 +23,23 @@ export default function Post({ params }: { params: { slug: string } }) {
   }
 
   return (
-    <section className='justify-center flex flex-col w-full items-center'>
-      <div className=''>
-        <h1 className='text-xl mb-2 lg:text-2xl xl:text-3xl font-semibold text-start max-w-[65ch]'>
-          {post.title}
-        </h1>
-        <div className='flex mb-6 text-sm max-w-[65ch] gap-2 items-center justify-start w-full'>
-          <p>{format(parseISO(post.date), 'LLLL d, yyyy')}</p>
-          {'•'}
-          <span>{`${
-            calculateReadingTime(post.body.raw) <= 1
-              ? '< 1 minute read'
-              : `${calculateReadingTime(post.body.raw)} minutes read`
-          }`}</span>
-        </div>
-        <article className='prose dark:prose-invert'>
-          <MDXContent />
-        </article>
+    <main className=''>
+      <h1 className='font-bold text-2xl tracking-tighter max-w-[650px]'>
+        <Balancer>{post.title}</Balancer>
+      </h1>
+      <div className='flex mt-2 mb-8 text-sm max-w-[650px] gap-2 items-center justify-start'>
+        <p>{format(parseISO(post.date), 'LLLL d, yyyy')}</p>
+        {'•'}
+        <span>{`${
+          calculateReadingTime(post.body.raw) <= 1
+            ? '< 1 minute read'
+            : `${calculateReadingTime(post.body.raw)} minutes read`
+        }`}</span>
       </div>
-    </section>
+      <article className='prose dark:prose-invert'>
+        <MDXContent />
+      </article>
+      <CommentSection />
+    </main>
   );
 }
