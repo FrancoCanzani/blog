@@ -12,7 +12,7 @@ export default function SubmitButton() {
       type='submit'
       aria-disabled={pending}
     >
-      {pending ? <Loader2 /> : 'Subscribe'}
+      {pending ? <Loader2 className='animate-spin' /> : 'Subscribe'}
     </button>
   );
 }

@@ -2,7 +2,7 @@ import SignIn from './signIn';
 import CommentForm from './form/commentForm';
 import { getServerSession } from 'next-auth';
 
-export default async function CommentSection() {
+export default async function CommentSection({ postID }: { postID: string }) {
   const session = await getServerSession();
 
   return (
@@ -11,7 +11,7 @@ export default async function CommentSection() {
         <h2 className='font-bold text-xl'>Comments</h2>
         <SignIn />
       </div>
-      {session && <CommentForm />}
+      {session && <CommentForm postID={postID} />}
     </section>
   );
 }

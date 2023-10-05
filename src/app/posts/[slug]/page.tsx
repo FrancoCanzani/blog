@@ -4,6 +4,7 @@ import { format, parseISO } from 'date-fns';
 import calculateReadingTime from '@/app/utils/calculateReadingTime';
 import CommentSection from '@/app/components/commentSection';
 import Balancer from 'react-wrap-balancer';
+import Comments from '@/app/components/comments';
 
 export async function generateStaticParams() {
   const posts = allPosts;
@@ -39,7 +40,8 @@ export default function Post({ params }: { params: { slug: string } }) {
       <article className='prose dark:prose-invert'>
         <MDXContent />
       </article>
-      <CommentSection />
+      <CommentSection postID={post._raw.flattenedPath} />
+      <Comments postID={post._raw.flattenedPath} />
     </main>
   );
 }

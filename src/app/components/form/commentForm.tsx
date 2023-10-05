@@ -4,19 +4,21 @@ import { useRef } from 'react';
 import { experimental_useFormStatus as useFormStatus } from 'react-dom';
 import { useSession } from 'next-auth/react';
 import addComment from '@/app/utils/actions/addComment';
+import { useRouter } from 'next/navigation';
 
-export default function CommentForm() {
+export default function CommentForm({ postID }: { postID: string }) {
   const { pending } = useFormStatus();
   const { data: session } = useSession();
   const formRef = useRef<HTMLFormElement>(null);
+  const router = useRouter();
 
   return (
     <form
       ref={formRef}
       action={async (FormData) => {
-        if (FormData.get('comment')) {
-          // Add the email
-          await addComment(FormData);
+        if (session?.user?.name && FormData.get('comment')) {
+          await addComment(FormData, postID, session?.user);
+          router.refresh();
           formRef?.current?.reset();
         }
       }}
