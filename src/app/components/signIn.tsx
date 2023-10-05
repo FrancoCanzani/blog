@@ -9,7 +9,7 @@ export default function SignIn() {
     return (
       <div className='flex font-semibold items-center justify-center gap-2'>
         <button
-          className='px-3 py-1.5 border font-semibold border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 rounded p-1 text-sm inline-flex items-center leading-4 text-neutral-900 dark:text-neutral-100'
+          className='px-3 py-1.5 border font-semibold border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 rounded-sm p-1 text-sm inline-flex items-center leading-4 text-neutral-900 dark:text-neutral-100'
           onClick={() => signOut()}
         >
           Sign out
@@ -19,8 +19,8 @@ export default function SignIn() {
   }
   return (
     <button
-      className='px-3 py-1.5 font-semibold border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 rounded p-1 text-sm inline-flex items-center leading-4 text-neutral-900 dark:text-neutral-100'
-      onClick={() => signIn()}
+      className='px-3 py-1.5 font-semibold border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 rounded-sm p-1 text-sm inline-flex items-center leading-4 text-neutral-900 dark:text-neutral-100'
+      onClick={() => signIn('github')}
     >
       <Github size={18} />
       <span className='ml-2'>Sign in to comment</span>
