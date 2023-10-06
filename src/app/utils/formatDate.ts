@@ -1,4 +1,4 @@
-export default function formatDate(date: string) {
+export default function formatDate(date: string | Date) {
   const currentDate = new Date();
   const targetDate = new Date(date);
 
