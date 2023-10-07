@@ -24,7 +24,7 @@ export default async function RootLayout({
   return (
     <html lang='en'>
       <body
-        className={`${lora.className} bg-[#f6f3f1] dark:bg-[#0c0a09] dark:text-[#f6f3f1] antialiased max-w-3xl m-auto`}
+        className={`${lora.className} dark:bg-[#0c0a09] dark:text-[#f6f3f1] antialiased flex flex-col items-center justify-center max-w-3xl m-auto`}
       >
         <SessionProvider session={session}>
           <ToggleProvider>

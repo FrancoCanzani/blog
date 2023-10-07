@@ -1,20 +1,22 @@
 import Link from 'next/link';
 import { allPosts, Post } from 'contentlayer/generated';
 import formatDate from '../utils/formatDate';
+import { MoveUpRight } from 'lucide-react';
 
 export function PostCard({ post }: { post: Post }) {
   return (
-    <div className='mb-4 bg-orange-200 dark:bg-orange-900 p-1 px-2 border border-orange-400 rounded-sm'>
-      <h2 className='text-base hover:underline'>
-        <Link
-          href={post.url}
-          className='text-blue-700 hover:text-blue-900'
-          legacyBehavior
-        >
-          {post.title}
-        </Link>
-      </h2>
-      <span className='text-xs font-light'>{formatDate(post.date)}</span>
+    <div className='mb-4 bg-gray-100 border rounded-md px-2 py-1.5'>
+      <div className='flex items-center justify-between'>
+        <h2 className='flex text-lg font-bold items-center justify-between hover:underline'>
+          <Link href={post.url} legacyBehavior>
+            {post.title}
+          </Link>
+        </h2>
+        <MoveUpRight size={18} />
+      </div>
+      <span className='text-xs text-gray-600 font-light'>
+        {formatDate(post.date)}
+      </span>
     </div>
   );
 }

@@ -1,5 +1,7 @@
 import { Comment } from '../utils/db/models/comments';
 import Image from 'next/image';
+import DeleteComment from './buttons/deleteComment';
+import formatDate from '../utils/formatDate';
 
 export default async function Comments({ postID }: { postID: string }) {
   const response = await fetch(
@@ -7,24 +9,30 @@ export default async function Comments({ postID }: { postID: string }) {
   );
 
   const data = await response.json();
-  const comments = data.comments; // Assuming comments is an array of objects
+  const comments = data.comments;
 
   return (
     <ol>
       {comments.map((comment: Comment) => (
         <li
           key={comment._id}
-          className='border rounded-sm px-2 border-black py-1.5 mt-2'
+          className='border rounded-sm px-4 border-black py-1.5 mt-2'
         >
-          <div>
+          <div className='flex items-center w-full'>
             <Image
               src={comment.user.picture}
-              height={25}
-              width={25}
+              height={30}
+              width={30}
               alt={comment.user.name}
-              className='rounded-full'
+              className='rounded-full mr-3'
             />
-            <span>{comment.user.name}</span>
+            <div className='flex flex-col w-full'>
+              <div className='flex items-center justify-between w-full'>
+                <span>{comment.user.name}</span>
+                <DeleteComment comment={comment} />
+              </div>{' '}
+              <span className='text-xs'>{formatDate(comment.timestamp)}</span>
+            </div>
           </div>
           {comment.comment}
         </li>

@@ -1,0 +1,38 @@
+'use client';
+
+import { Trash2 } from 'lucide-react';
+import { Comment } from '@/app/utils/db/models/comments';
+import { useRouter } from 'next/navigation';
+
+export default function DeleteComment({ comment }: { comment: Comment }) {
+  const router = useRouter();
+
+  const deleteComment = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/api/comments?commentID=${comment._id}`,
+        { method: 'DELETE' }
+      );
+      console.log(await response.json());
+      router.refresh();
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+    } catch (error) {
+      console.error(
+        'There has been a problem with your fetch operation: ',
+        error
+      );
+    }
+  };
+
+  return (
+    <button
+      onClick={deleteComment}
+      className='active:active:translate-y-0.5 transition-all duration-100'
+      aria-label='delete'
+    >
+      <Trash2 size={15} />
+    </button>
+  );
+}

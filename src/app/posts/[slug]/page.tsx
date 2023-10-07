@@ -25,17 +25,19 @@ export default function Post({ params }: { params: { slug: string } }) {
 
   return (
     <main className=''>
-      <h1 className='font-bold text-2xl tracking-tighter max-w-[650px]'>
+      <h1 className='font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-tighter max-w-[650px]'>
         <Balancer>{post.title}</Balancer>
       </h1>
-      <div className='flex mt-2 mb-8 text-sm max-w-[650px] gap-2 items-center justify-start'>
-        <p>{format(parseISO(post.date), 'LLLL d, yyyy')}</p>
-        {'•'}
-        <span>{`${
-          calculateReadingTime(post.body.raw) <= 1
-            ? '< 1 minute read'
-            : `${calculateReadingTime(post.body.raw)} minutes read`
-        }`}</span>
+      <div className='flex mt-2 mb-8 text-sm max-w-[650px] gap-2 items-center justify-between'>
+        <div className='flex text-sm gap-2 items-center justify-center'>
+          <p>{format(parseISO(post.date), 'LLLL d, yyyy')}</p>
+          {'•'}
+          <span>{`${
+            calculateReadingTime(post.body.raw) <= 1
+              ? '< 1 minute read'
+              : `${calculateReadingTime(post.body.raw)} minutes read`
+          }`}</span>
+        </div>
       </div>
       <article className='prose dark:prose-invert'>
         <MDXContent />
