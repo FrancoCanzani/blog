@@ -17,7 +17,14 @@ export default function Contribute() {
             repository on GitHub.
           </li>
           <li>
-            Create a new Markdown (MD/MDX) file in the &quot;posts&quot; folder.
+            Create a new Markdown (MD/MDX) file in the{' '}
+            <a
+              href='https://github.com/FrancoCanzani/blog/tree/master/posts'
+              target='blank'
+            >
+              posts
+            </a>{' '}
+            folder.
           </li>
           <li>Write your post using Markdown syntax.</li>
           <li>Commit your changes to your forked repository.</li>

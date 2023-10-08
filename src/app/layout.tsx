@@ -6,6 +6,7 @@ import Footer from './components/footer';
 import Header from './components/header';
 import SessionProvider from './components/sessionProvider';
 import { getServerSession } from 'next-auth';
+import Subscribe from './components/subscribe';
 
 const lora = Lora({ subsets: ['latin'] });
 
@@ -31,6 +32,7 @@ export default async function RootLayout({
             <main className='p-6 pt-3 md:pt-6 min-h-screen'>
               <Header />
               {children}
+              <Subscribe />
             </main>
             <Footer />
           </ToggleProvider>

@@ -4,6 +4,7 @@ import SubscriptionModal from './subscriptionModal';
 import { useState } from 'react';
 import ThemeSwitch from './themeSwitch';
 import Link from 'next/link';
+import ScrollIntoViewButton from './buttons/scrollIntoViewButton';
 
 export default function Header() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -18,12 +19,7 @@ export default function Header() {
       </Link>
       <div className='items-center gap-3 flex'>
         <ThemeSwitch />
-        <button
-          onClick={() => setModalIsOpen(!modalIsOpen)}
-          className='px-2 relative transition-all hidden sm:flex duration-200 group py-1 active:translate-y-0.5 rounded-sm items-center justify-between gap-2'
-        >
-          Subscribe
-        </button>
+        <ScrollIntoViewButton />
       </div>
     </header>
   );

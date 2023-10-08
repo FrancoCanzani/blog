@@ -1,7 +1,10 @@
 export default function Footer() {
   return (
-    <footer className='text-xs py-6 w-full text-center mt-8 px-4 sm:px-8 md:px-16 lg:px-32 xl:px-44'>
-      Copyright
+    <footer className='text-xs space-x-6 py-6 w-full text-center flex items-center justify-center mt-8'>
+      <p>Copyright</p>
+      <a href='https://github.com/FrancoCanzani/blog' target='blank'>
+        {`<Source/>`}
+      </a>
     </footer>
   );
 }
