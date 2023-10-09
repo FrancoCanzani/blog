@@ -23,10 +23,11 @@ export function PostCard({ post }: { post: Post }) {
 export function PreviewPosts() {
   // Sort date asc
   const posts = allPosts.sort((a, b) => (a.date < b.date ? 1 : -1));
+  const slicedPosts = posts.slice(0, 2);
   return (
     <section className='w-full mb-6'>
       <h2 className='font-bold mb-4'>Latest posts</h2>
-      {posts.map((post, idx) => (
+      {slicedPosts.map((post, idx) => (
         <PostCard key={idx} post={post} />
       ))}
       <div className='w-full gap-1 flex items-center justify-end'>

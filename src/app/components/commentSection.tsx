@@ -1,6 +1,8 @@
 import SignIn from './signIn';
 import CommentForm from './form/commentForm';
 import { getServerSession } from 'next-auth';
+import Comments from './comments';
+import { Suspense } from 'react';
 
 export default async function CommentSection({ postID }: { postID: string }) {
   const session = await getServerSession();
@@ -12,6 +14,9 @@ export default async function CommentSection({ postID }: { postID: string }) {
         <SignIn />
       </div>
       {session && <CommentForm postID={postID} />}
+      <Suspense fallback={<div>Loading...</div>}>
+        <Comments postID={postID} />
+      </Suspense>
     </section>
   );
 }

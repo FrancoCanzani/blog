@@ -1,5 +1,7 @@
+import SubscriptionForm from './form/subscriptionForm';
+
 const whatYouGet = [
-  'Fresh Content: Receive the latest articles and posts directly in your inbox as soon as they are published.',
+  'Fresh Content: Receive the latest articles and posts directly in your inbox.',
   'Stay Informed: Stay informed about industry trends, news, and developments.',
   "Privacy: We prioritize your privacy and won't share your email address with third parties.",
 ];
@@ -10,7 +12,7 @@ const whatYouWontGet = [
 
 export default function Subscribe() {
   return (
-    <section id='subscribe' className='w-full mb-6'>
+    <section id='subscribe' className='w-full my-6'>
       <h2 className='font-bold mb-4'>Subscribe</h2>
       <ul className='mb-2'>
         {whatYouGet.map((item) => (
@@ -44,7 +46,7 @@ export default function Subscribe() {
                 fill='none'
                 stroke='currentColor'
                 stroke-linecap='round'
-                stroke-width='1.5'
+                strokeWidth='1.5'
                 d='m8.464 15.535l7.072-7.07m-7.072 0l7.072 7.07'
               />
             </svg>{' '}
@@ -52,6 +54,7 @@ export default function Subscribe() {
           </li>
         ))}
       </ul>
+      <SubscriptionForm />
     </section>
   );
 }

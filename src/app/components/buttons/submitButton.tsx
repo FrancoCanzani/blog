@@ -3,20 +3,16 @@
 import { experimental_useFormStatus as useFormStatus } from 'react-dom';
 import { Loader2 } from 'lucide-react';
 
-export default function SubmitButton({ text }: { text: string }) {
+export default function SubmitButton() {
   const { pending } = useFormStatus();
 
   return (
     <button
-      className='flex py-1.5 min-w-[100px] justify-center font-semibold border border-neutral-200 dark:border-neutral-700 bg-neutral-800 rounded-sm text-sm items-center text-neutral-100'
+      className='dark:bg-gray-100 flex items-center justify-center w-1/4 dark:text-black bg-neutral-800 text-gray-100 border-gray-950 border rounded-md px-2 py-1.5'
       type='submit'
       aria-disabled={pending}
     >
-      {pending ? (
-        <Loader2 className='animate-spin my-[0.08rem]' size={18} />
-      ) : (
-        text
-      )}
+      {pending ? <Loader2 className='animate-spin' /> : 'Subscribe'}
     </button>
   );
 }

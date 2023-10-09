@@ -4,7 +4,6 @@ import { format, parseISO } from 'date-fns';
 import calculateReadingTime from '@/app/utils/calculateReadingTime';
 import CommentSection from '@/app/components/commentSection';
 import Balancer from 'react-wrap-balancer';
-import Comments from '@/app/components/comments';
 
 export async function generateStaticParams() {
   const posts = allPosts;
@@ -29,7 +28,7 @@ export default function Post({ params }: { params: { slug: string } }) {
         <Balancer>{post.title}</Balancer>
       </h1>
       <div className='flex mt-2 mb-8 text-sm max-w-[650px] gap-2 items-center justify-between'>
-        <div className='flex text-sm gap-2 items-center justify-center'>
+        <div className='flex gap-2 items-center justify-center text-sm text-gray-600 dark:text-gray-300 font-light'>
           <p>{format(parseISO(post.date), 'LLLL d, yyyy')}</p>
           {'•'}
           <span>{`${
@@ -43,7 +42,6 @@ export default function Post({ params }: { params: { slug: string } }) {
         <MDXContent />
       </article>
       <CommentSection postID={post._raw.flattenedPath} />
-      <Comments postID={post._raw.flattenedPath} />
     </main>
   );
 }

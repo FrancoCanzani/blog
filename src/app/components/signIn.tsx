@@ -7,19 +7,17 @@ export default function SignIn() {
   const { data: session } = useSession();
   if (session) {
     return (
-      <div className='flex font-semibold items-center justify-center gap-2'>
-        <button
-          className='px-3 py-1.5 border font-semibold border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 rounded-sm p-1 text-sm inline-flex items-center leading-4 text-neutral-900 dark:text-neutral-100'
-          onClick={() => signOut()}
-        >
-          Sign out
-        </button>
-      </div>
+      <button
+        className='dark:bg-gray-100 dark:text-black bg-neutral-800 text-gray-100 border-gray-950 border text-sm rounded-md px-2 py-1'
+        onClick={() => signOut()}
+      >
+        Sign out
+      </button>
     );
   }
   return (
     <button
-      className='px-3 py-1.5 font-semibold border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 rounded-sm p-1 text-sm inline-flex items-center leading-4 text-neutral-900 dark:text-neutral-100'
+      className='dark:bg-gray-100 flex items-center justify-center gap-0.5 dark:text-black bg-neutral-800 text-gray-100 border-gray-950 border text-sm rounded-md px-2 py-1'
       onClick={() => signIn('github')}
     >
       <Github size={18} />
