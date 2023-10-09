@@ -4,6 +4,7 @@ import { format, parseISO } from 'date-fns';
 import calculateReadingTime from '@/app/utils/calculateReadingTime';
 import CommentSection from '@/app/components/commentSection';
 import Balancer from 'react-wrap-balancer';
+import Head from 'next/head';
 
 export async function generateStaticParams() {
   const posts = allPosts;
@@ -24,6 +25,21 @@ export default function Post({ params }: { params: { slug: string } }) {
 
   return (
     <main className=''>
+      <Head>
+        <title>{post.title}</title>
+        <meta
+          property='og:image'
+          content={`http://localhost:3000/api/og?title=${encodeURIComponent(
+            post.title
+          )}`}
+        />
+        <meta
+          name='twitter:image'
+          content={`http://localhost:3000/api/og?title=${encodeURIComponent(
+            post.title
+          )}`}
+        />
+      </Head>
       <h1 className='font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-tighter max-w-[650px]'>
         <Balancer>{post.title}</Balancer>
       </h1>

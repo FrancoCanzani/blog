@@ -10,8 +10,8 @@ export default function ValidationMessage({
 }) {
   return message ? (
     <p
-      className={`text-sm animate-fade gap-2 px-2 py-1 ${
-        outcome === 'error' ? 'bg-red-50' : 'bg-green-50'
+      className={`text-sm font-semibold animate-fade gap-2 px-2 py-1 ${
+        outcome === 'error' ? 'bg-red-200' : 'bg-green-200'
       } rounded-md w-full flex items-center justify-start`}
     >
       {outcome == 'error' ? <XCircle size={15} /> : <CheckCircle2 size={15} />}

@@ -11,8 +11,7 @@ import Subscribe from './components/subscribe';
 const lora = Lora({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Blog',
-  description: '👑',
+  title: 'The Programming Notes',
 };
 
 export default async function RootLayout({

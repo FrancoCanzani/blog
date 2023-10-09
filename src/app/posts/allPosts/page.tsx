@@ -1,5 +1,6 @@
 import { allPosts as contentLayerPosts } from 'contentlayer/generated';
 import { PostCard } from '@/app/components/previewPosts';
+
 export default function AllPosts() {
   return (
     <section>
