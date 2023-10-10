@@ -15,7 +15,7 @@ export default async function CommentSection({ postID }: { postID: string }) {
       </div>
       {session && <CommentForm postID={postID} />}
       <Suspense fallback={<div>Loading...</div>}>
-        {/* <Comments postID={postID} /> */}
+        <Comments postID={postID} />
       </Suspense>
     </section>
   );
