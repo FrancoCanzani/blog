@@ -7,7 +7,7 @@ import DeleteComment from './buttons/deleteComment';
 const domain = process.env.PROD_URL;
 
 export default async function Comments({ postID }: { postID: string }) {
-  const response = await fetch(`${domain}/api/comments?id=${postID}`);
+  const response = await fetch(`/api/comments?id=${postID}`);
 
   const data = await response.json();
   const comments = data.comments;
