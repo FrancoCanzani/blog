@@ -4,13 +4,15 @@ import { Trash2 } from 'lucide-react';
 import { Comment } from '@/app/utils/db/models/comments';
 import { useRouter } from 'next/navigation';
 
+const domain = process.env.PROD_URL;
+
 export default function DeleteComment({ comment }: { comment: Comment }) {
   const router = useRouter();
 
   const deleteComment = async () => {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/comments?commentID=${comment._id}`,
+        `${domain}/api/comments?commentID=${comment._id}`,
         { method: 'DELETE' }
       );
       console.log(await response.json());

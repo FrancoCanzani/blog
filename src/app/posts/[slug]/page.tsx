@@ -1,15 +1,53 @@
-import { allPosts } from 'contentlayer/generated';
+import { allPosts, Post } from 'contentlayer/generated';
 import { getMDXComponent } from 'next-contentlayer/hooks';
 import { format, parseISO } from 'date-fns';
 import calculateReadingTime from '@/app/utils/calculateReadingTime';
 import CommentSection from '@/app/components/commentSection';
 import Balancer from 'react-wrap-balancer';
-import Head from 'next/head';
+import { Metadata } from 'next';
+import { Params } from 'next/dist/shared/lib/router/utils/route-matcher';
+
+const domain = process.env.PROD_URL;
 
 export async function generateStaticParams() {
   const posts = allPosts;
 
   return posts.map((post: any) => ({ slug: post._raw.flattenedPath }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Params;
+}): Promise<Metadata | undefined> {
+  const post = allPosts.find(
+    (post: Post) => post._raw.flattenedPath === params.slug
+  );
+  if (!post) {
+    return;
+  }
+
+  const { title } = post;
+  const ogImage = `${domain}/api/og?title=${encodeURIComponent(post.title)}`;
+
+  return {
+    title,
+    openGraph: {
+      title,
+      type: 'article',
+      url: `${domain}/posts/${post._id}`,
+      images: [
+        {
+          url: ogImage,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      images: [ogImage],
+    },
+  };
 }
 
 export default function Post({ params }: { params: { slug: string } }) {
@@ -25,21 +63,6 @@ export default function Post({ params }: { params: { slug: string } }) {
 
   return (
     <main className=''>
-      <Head>
-        <title>{post.title}</title>
-        <meta
-          property='og:image'
-          content={`http://localhost:3000/api/og?title=${encodeURIComponent(
-            post.title
-          )}`}
-        />
-        <meta
-          name='twitter:image'
-          content={`http://localhost:3000/api/og?title=${encodeURIComponent(
-            post.title
-          )}`}
-        />
-      </Head>
       <h1 className='font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-tighter max-w-[650px]'>
         <Balancer>{post.title}</Balancer>
       </h1>

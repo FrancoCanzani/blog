@@ -4,10 +4,10 @@ import formatDate from '../utils/formatDate';
 import { getServerSession } from 'next-auth';
 import DeleteComment from './buttons/deleteComment';
 
+const domain = process.env.PROD_URL;
+
 export default async function Comments({ postID }: { postID: string }) {
-  const response = await fetch(
-    `http://localhost:3000/api/comments?id=${postID}`
-  );
+  const response = await fetch(`${domain}/api/comments?id=${postID}`);
 
   const data = await response.json();
   const comments = data.comments;
