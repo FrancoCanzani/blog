@@ -80,7 +80,7 @@ export default function Post({ params }: { params: { slug: string } }) {
       <article className='prose dark:prose-invert'>
         <MDXContent />
       </article>
-      <CommentSection postID={post._raw.flattenedPath} />
+      {/* <CommentSection postID={post._raw.flattenedPath} /> */}
     </main>
   );
 }
