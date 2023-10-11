@@ -1,4 +1,4 @@
-import SignIn from './signIn';
+import SignIn from './buttons/signIn';
 import CommentForm from './form/commentForm';
 import { getServerSession } from 'next-auth';
 import Comments from './comments';

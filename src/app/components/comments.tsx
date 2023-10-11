@@ -3,14 +3,11 @@ import Image from 'next/image';
 import formatDate from '../utils/formatDate';
 import { getServerSession } from 'next-auth';
 import DeleteComment from './buttons/deleteComment';
-
-const domain = process.env.PROD_URL;
+import getComments from '../utils/getComments';
 
 export default async function Comments({ postID }: { postID: string }) {
-  const response = await fetch(`/api/comments?id=${postID}`);
-
-  const data = await response.json();
-  const comments = data.comments;
+  const comments = await getComments(postID);
+  console.log(comments);
 
   return (
     <ol>
