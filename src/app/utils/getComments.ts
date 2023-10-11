@@ -8,7 +8,6 @@ export default async function getComments(postID: string): Promise<Comment[]> {
     const comments = await CommentModel.find({ postID: postID });
     return comments;
   } catch (e) {
-    console.log(e);
     return [];
   }
 }

@@ -12,39 +12,54 @@ export default function SubscriptionForm() {
   const [message, setMessage] = useState<string | null>(null);
   const [outcome, setOutcome] = useState<'success' | 'error' | null>(null);
 
+  const handleSubscribe = async (FormData: FormData) => {
+    try {
+      const email = FormData.get('email');
+
+      if (!validateEmail(email)) {
+        throw new Error('Please enter a valid email!');
+      }
+
+      if (await isEmailInDatabase(email)) {
+        throw new Error('It looks like you are already subscribed!');
+      }
+
+      await addEmail(FormData);
+      handleOutcome('success', 'Thanks for subscribing to Notes!');
+      formRef?.current?.reset();
+    } catch (error: unknown) {
+      handleError(error as Error);
+    }
+  };
+
+  const handleError = (error: Error) => {
+    setOutcome('error');
+    setMessage(error.message);
+
+    setTimeout(() => {
+      setMessage(null);
+      setOutcome(null);
+    }, 2500);
+  };
+
+  const handleOutcome = (type: 'success' | 'error', message: string) => {
+    setOutcome(type);
+    setMessage(message);
+
+    setTimeout(() => {
+      setMessage(null);
+      if (type === 'success') {
+        setOutcome(null);
+      }
+    }, 2500);
+  };
+
   return (
     <form
       className='mt-8'
       ref={formRef}
-      // Next js server action
       action={async (FormData) => {
-        if (validateEmail(FormData.get('email'))) {
-          if (await isEmailInDatabase(FormData.get('email'))) {
-            setOutcome('error');
-            setMessage('It looks like you are already subscribed!');
-            setTimeout(() => {
-              setMessage(null);
-              setOutcome(null);
-            }, 2500);
-          } else {
-            await addEmail(FormData);
-            setOutcome('success');
-            setMessage('Thanks for subscribing to Notes!');
-
-            setTimeout(() => {
-              setMessage(null);
-              setOutcome(null);
-              // Reset the form input
-              formRef?.current?.reset();
-            }, 2500);
-          }
-        } else {
-          setOutcome('error');
-          setMessage('Please enter a valid email!');
-          setTimeout(() => {
-            setMessage(null);
-          }, 2500);
-        }
+        handleSubscribe(FormData);
       }}
     >
       <div className='flex flex-col my-3'>

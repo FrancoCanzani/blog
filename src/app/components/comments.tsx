@@ -7,7 +7,6 @@ import getComments from '../utils/getComments';
 
 export default async function Comments({ postID }: { postID: string }) {
   const comments = await getComments(postID);
-  console.log(comments);
 
   return (
     <ol>
