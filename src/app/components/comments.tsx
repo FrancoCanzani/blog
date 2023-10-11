@@ -8,9 +8,23 @@ import getComments from '../utils/getComments';
 export default async function Comments({ postID }: { postID: string }) {
   const comments = await getComments(postID);
 
+  // Convert the ObjectId objects to strings
+  const simpleComments = comments.map((comment: Comment) => {
+    return {
+      _id: comment._id.toString(),
+      comment: comment.comment,
+      timestamp: comment.timestamp,
+      user: {
+        name: comment.user.name,
+        email: comment.user.email,
+        picture: comment.user.picture,
+      },
+    };
+  });
+
   return (
     <ol>
-      {comments.map((comment: Comment, index: number) => (
+      {simpleComments.map((comment: any, index: number) => (
         <li
           key={comment._id}
           className={`${
