@@ -28,8 +28,6 @@ export default async function addComment(
     });
 
     const savedComment = await newComment.save();
-
-    console.log(`A comment was added with the _id: ${savedComment._id}`);
   } catch (e) {
     console.error(e);
   }

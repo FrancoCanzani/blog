@@ -12,9 +12,7 @@ export default async function addEmail(formData: FormData) {
     });
 
     const savedEmail = await newEmail.save();
-
-    console.log(`An email was added with the _id: ${savedEmail._id}`);
   } catch (e) {
-    console.error(e);
+    throw new Error('There was an error adding your Email. Please try again.');
   }
 }
