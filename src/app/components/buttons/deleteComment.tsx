@@ -9,10 +9,10 @@ const domain = process.env.PROD_URL;
 export default function DeleteComment({ comment }: { comment: Comment }) {
   const router = useRouter();
 
-  const deleteComment = async () => {
+  const deleteComment = async (commentID: string) => {
     try {
       const response = await fetch(
-        `${domain}/api/comments?commentID=${comment._id}`,
+        `${domain}/api/comments?commentID=${commentID}`,
         {
           method: 'DELETE',
         }
@@ -32,9 +32,7 @@ export default function DeleteComment({ comment }: { comment: Comment }) {
   return (
     <button
       onClick={() => {
-        deleteComment();
-        console.log(comment.id);
-        console.log(comment._id);
+        deleteComment(comment._id);
       }}
       className='active:active:translate-y-0.5 transition-all duration-100'
       aria-label='delete'
