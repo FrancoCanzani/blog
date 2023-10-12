@@ -13,6 +13,6 @@ export default async function addEmail(formData: FormData) {
 
     const savedEmail = await newEmail.save();
   } catch (e) {
-    throw new Error('There was an error adding your Email. Please try again.');
+    throw new Error('There was an error adding the Email. Please try again.');
   }
 }

@@ -10,7 +10,7 @@ export default function ValidationMessage({
 }) {
   return message ? (
     <p
-      className={`text-sm font-semibold animate-fade gap-2 px-2 py-1 ${
+      className={`text-sm text-black font-semibold animate-fade gap-2 px-2 py-1 ${
         outcome === 'error' ? 'bg-red-200' : 'bg-green-200'
       } rounded-md w-full flex items-center justify-start`}
     >

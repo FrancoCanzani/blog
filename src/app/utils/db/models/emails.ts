@@ -17,6 +17,10 @@ const emailSchema = new mongoose.Schema<Email>({
   },
 });
 
+// Create an index on the 'email' field
+emailSchema.index({ email: 1 });
+
 const EmailModel =
   mongoose.models.Email || mongoose.model<Email>('Email', emailSchema);
+
 export default EmailModel;
