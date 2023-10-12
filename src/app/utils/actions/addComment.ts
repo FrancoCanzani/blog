@@ -7,6 +7,7 @@ type authUser = {
 };
 
 import CommentModel from '../db/models/comments';
+import dbConnect from '../db/dbConnect';
 
 export default async function addComment(
   formData: FormData,
@@ -14,6 +15,7 @@ export default async function addComment(
   user: authUser
 ) {
   try {
+    await dbConnect();
     const newComment = new CommentModel({
       comment: formData.get('comment'),
       user: {

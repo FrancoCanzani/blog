@@ -4,16 +4,10 @@ import { Trash2 } from 'lucide-react';
 import { Comment } from '@/app/utils/db/models/comments';
 import { useRouter } from 'next/navigation';
 
-export default function DeleteComment({
-  comment,
-  postID,
-}: {
-  comment: Comment;
-  postID: string;
-}) {
+export default function DeleteComment({ comment }: { comment: Comment }) {
   const router = useRouter();
 
-  const deleteComment = async (commentID: string, postID: string) => {
+  const deleteComment = async (commentID: string) => {
     try {
       const response = await fetch(`/api/comments?commentID=${commentID}`, {
         method: 'DELETE',
@@ -33,7 +27,7 @@ export default function DeleteComment({
   return (
     <button
       onClick={() => {
-        deleteComment(comment._id, postID);
+        deleteComment(comment._id);
       }}
       className='active:active:translate-y-0.5 transition-all duration-100'
       aria-label='delete'

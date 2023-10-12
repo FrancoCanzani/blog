@@ -1,9 +1,11 @@
 'use server';
 
 import EmailModel from '../db/models/emails';
+import dbConnect from '../db/dbConnect';
 
 export default async function addEmail(formData: FormData) {
   try {
+    await dbConnect();
     const newEmail = new EmailModel({
       email: formData.get('email'),
       subDate: new Date(),

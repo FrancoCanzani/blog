@@ -4,50 +4,11 @@ import { format, parseISO } from 'date-fns';
 import calculateReadingTime from '@/app/utils/calculateReadingTime';
 import CommentSection from '@/app/components/commentSection';
 import Balancer from 'react-wrap-balancer';
-import { Metadata } from 'next';
-import { Params } from 'next/dist/shared/lib/router/utils/route-matcher';
-
-const domain = process.env.PROD_URL;
 
 export async function generateStaticParams() {
   const posts = allPosts;
 
   return posts.map((post: any) => ({ slug: post._raw.flattenedPath }));
-}
-
-export async function generateMetadata({
-  params,
-}: {
-  params: Params;
-}): Promise<Metadata | undefined> {
-  const post = allPosts.find(
-    (post: Post) => post._raw.flattenedPath === params.slug
-  );
-  if (!post) {
-    return;
-  }
-
-  const { title } = post;
-  const ogImage = `${domain}/api/og?title=${encodeURIComponent(post.title)}`;
-
-  return {
-    title,
-    openGraph: {
-      title,
-      type: 'article',
-      url: `${domain}/posts/${post._id}`,
-      images: [
-        {
-          url: ogImage,
-        },
-      ],
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title,
-      images: [ogImage],
-    },
-  };
 }
 
 export default function Post({ params }: { params: { slug: string } }) {
@@ -62,12 +23,12 @@ export default function Post({ params }: { params: { slug: string } }) {
   }
 
   return (
-    <main className=''>
+    <main>
       <h1 className='font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-tighter max-w-[650px]'>
         <Balancer>{post.title}</Balancer>
       </h1>
       <div className='flex mt-2 mb-8 text-sm max-w-[650px] gap-2 items-center justify-between'>
-        <div className='flex gap-2 items-center justify-center text-sm text-gray-600 dark:text-gray-300 font-light'>
+        <div className='flex gap-2 items-center justify-center text-xs text-gray-700 dark:text-gray-300 font-light'>
           <p>{format(parseISO(post.date), 'LLLL d, yyyy')}</p>
           {'•'}
           <span>{`${
