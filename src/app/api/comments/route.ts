@@ -7,7 +7,6 @@ export async function DELETE(request: Request) {
 
   try {
     await dbConnect();
-    console.log(commentID);
     await CommentModel.deleteOne({ _id: commentID });
     return Response.json({
       message: `Comment ${commentID} deleted successfully`,

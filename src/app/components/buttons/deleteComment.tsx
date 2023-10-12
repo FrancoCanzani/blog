@@ -2,17 +2,21 @@
 
 import { Trash2 } from 'lucide-react';
 import { Comment } from '@/app/utils/db/models/comments';
-import { useRouter } from 'next/navigation';
+import { revalidatePath } from 'next/cache';
 
-export default function DeleteComment({ comment }: { comment: Comment }) {
-  const router = useRouter();
-
-  const deleteComment = async (commentID: string) => {
+export default function DeleteComment({
+  comment,
+  postID,
+}: {
+  comment: Comment;
+  postID: string;
+}) {
+  const deleteComment = async (commentID: string, postID: string) => {
     try {
       const response = await fetch(`/api/comments?commentID=${commentID}`, {
         method: 'DELETE',
       });
-      router.refresh();
+      revalidatePath(`/posts/${postID}`);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
@@ -27,7 +31,7 @@ export default function DeleteComment({ comment }: { comment: Comment }) {
   return (
     <button
       onClick={() => {
-        deleteComment(comment._id);
+        deleteComment(comment._id, postID);
       }}
       className='active:active:translate-y-0.5 transition-all duration-100'
       aria-label='delete'
