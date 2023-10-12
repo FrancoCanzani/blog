@@ -17,7 +17,6 @@ export default function DeleteComment({ comment }: { comment: Comment }) {
           method: 'DELETE',
         }
       );
-      console.log(await response.json());
       router.refresh();
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -32,7 +31,11 @@ export default function DeleteComment({ comment }: { comment: Comment }) {
 
   return (
     <button
-      onClick={deleteComment}
+      onClick={() => {
+        deleteComment();
+        console.log(comment.id);
+        console.log(comment._id);
+      }}
       className='active:active:translate-y-0.5 transition-all duration-100'
       aria-label='delete'
     >
