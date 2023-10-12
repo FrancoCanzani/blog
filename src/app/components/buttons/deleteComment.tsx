@@ -13,7 +13,9 @@ export default function DeleteComment({ comment }: { comment: Comment }) {
     try {
       const response = await fetch(
         `${domain}/api/comments?commentID=${comment._id}`,
-        { method: 'DELETE' }
+        {
+          method: 'DELETE',
+        }
       );
       console.log(await response.json());
       router.refresh();
