@@ -4,19 +4,14 @@ import { Trash2 } from 'lucide-react';
 import { Comment } from '@/app/utils/db/models/comments';
 import { useRouter } from 'next/navigation';
 
-const domain = process.env.PROD_URL;
-
 export default function DeleteComment({ comment }: { comment: Comment }) {
   const router = useRouter();
 
   const deleteComment = async (commentID: string) => {
     try {
-      const response = await fetch(
-        `${domain}/api/comments?commentID=${commentID}`,
-        {
-          method: 'DELETE',
-        }
-      );
+      const response = await fetch(`/api/comments?commentID=${commentID}`, {
+        method: 'DELETE',
+      });
       router.refresh();
       if (!response.ok) {
         throw new Error('Network response was not ok');

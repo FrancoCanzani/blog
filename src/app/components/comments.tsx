@@ -55,9 +55,9 @@ async function Comment({ comment }: { comment: Comment }) {
         <div className='flex items-start w-full flex-col'>
           <div className='flex items-center justify-between w-full'>
             <span className='text-sm'>{comment.user.name}</span>
-            {session?.user?.email == comment.user.email && (
+            {/* {session?.user?.email == comment.user.email && ( */}
               <DeleteComment comment={comment} />
-            )}
+            {/* )} */}
           </div>
           <span className='text-xs font-semibold'>
             {formatDate(comment.timestamp)}
