@@ -11,7 +11,37 @@ import Subscribe from './components/subscribe';
 const lora = Lora({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'The Programming Notes',
+  title: {
+    template: '%s | Notes',
+    default: 'Notes',
+  },
+  description: 'Another Programming Blog',
+  keywords: ['Next.js', 'React', 'JavaScript', 'Programming'],
+  metadataBase: new URL('https://franconotes.vercel.app/'),
+  openGraph: {
+    title: 'Notes',
+    url: 'https://franconotes.vercel.app',
+    siteName: 'Notes',
+    locale: 'en_US',
+    type: 'website',
+  },
+  robots: {
+    index: false,
+    follow: true,
+    nocache: true,
+    googleBot: {
+      index: true,
+      follow: false,
+      noimageindex: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  twitter: {
+    title: 'Lee Robinson',
+    card: 'summary_large_image',
+  },
 };
 
 export default async function RootLayout({

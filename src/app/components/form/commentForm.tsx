@@ -31,7 +31,7 @@ export default function CommentForm({ postID }: { postID: string }) {
         className='bg-transparent dark:border-black dark:text-gray-100 outline-none border-b placeholder:text-gray-500 dark:placeholder:text-gray-300 py-2.5 px-2 text-sm w-full transition-all duration-300'
       />
       <div className='w-full py-2.5 px-2 flex items-center justify-between'>
-        <p className='text-xs dark:text-gray-300 italic w-full'>
+        <p className='text-xs w-5/6 dark:text-gray-300 italic'>
           Commenting as{' '}
           <span className='font-semibold'>{session?.user?.name}</span>
         </p>

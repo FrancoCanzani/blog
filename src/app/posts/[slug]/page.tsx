@@ -5,10 +5,46 @@ import calculateReadingTime from '@/app/utils/calculateReadingTime';
 import CommentSection from '@/app/components/commentSection';
 import Balancer from 'react-wrap-balancer';
 
+import { Metadata, ResolvingMetadata } from 'next';
+
+type Props = {
+  params: { slug: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
 export async function generateStaticParams() {
   const posts = allPosts;
 
   return posts.map((post: any) => ({ slug: post._raw.flattenedPath }));
+}
+
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const post = allPosts.find((post) => post._raw.flattenedPath === params.slug);
+
+  const ogImage = `https://franconotes.vercel.app/api/og?title=${post?.title}`;
+
+  return {
+    title: post?.title,
+    keywords: post?.keywords,
+    openGraph: {
+      title: post?.title,
+      type: 'article',
+      url: `https://franconotes.vercel.app/posts/${params.slug}`,
+      images: [
+        {
+          url: ogImage,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post?.title,
+      images: [ogImage],
+    },
+  };
 }
 
 export default function Post({ params }: { params: { slug: string } }) {
