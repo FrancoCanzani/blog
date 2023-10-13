@@ -3,6 +3,8 @@
 import { PostCard } from '@/app/components/previewPosts';
 import { Post, allPosts } from 'contentlayer/generated';
 import { usePathname } from 'next/navigation';
+import PostsFilter from '@/app/components/PostsFilter';
+import useDateFilter from '@/app/utils/hooks/useDateFilter';
 
 // This is a catch all route that takes the param to filter the posts
 export default function Topic() {
@@ -17,14 +19,22 @@ export default function Topic() {
       )
   );
 
+  const { filter, setFilter, filteredPosts } =
+    useDateFilter(filteredPostsByTopic);
+
   return (
     <section>
-      <h2 className='uppercase mb-6 text-xl font-bold text-gray-700 dark:text-gray-100'>
-        Topics / <span className='text-black dark:text-white'>{topic}</span>
+      <h2 className='uppercase mb-6 text-xl font-bold'>
+        Topics {'>'} {topic}
       </h2>
-      <h3 className='text-base font-semibold mb-4'>Posts about this topic:</h3>
+      <div className='flex items-center justify-between mb-4'>
+        <h3 className='text-base font-semibold'>Posts about this topic:</h3>
+        {filteredPostsByTopic.length > 1 && (
+          <PostsFilter filter={filter} setFilter={setFilter} />
+        )}
+      </div>
       <ul>
-        {filteredPostsByTopic.map((post) => (
+        {filteredPosts.map((post) => (
           <li key={post._id}>
             <PostCard post={post} />
           </li>

@@ -1,6 +1,5 @@
 import { allPosts } from 'contentlayer/generated';
 import Link from 'next/link';
-import { PostCard } from './previewPosts';
 
 export default function TopicsCovered() {
   // Initialize an empty array to store unique keywords
