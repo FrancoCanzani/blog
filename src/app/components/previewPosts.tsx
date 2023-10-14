@@ -12,9 +12,9 @@ export function PostCard({ post }: { post: Post }) {
         </h2>
         <MoveUpRight size={18} />
       </div>
-      <span className='text-xs text-gray-600 dark:text-gray-300 font-light'>
+      <time className='text-xs text-gray-600 dark:text-gray-300 font-light'>
         {formatDate(post.date)}
-      </span>
+      </time>
     </div>
   );
 }

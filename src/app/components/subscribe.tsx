@@ -6,15 +6,16 @@ const whatYouGet = [
   "Privacy: We prioritize your privacy and won't share your email address with third parties.",
 ];
 const whatYouWontGet = [
-  "No Spam: We respect your inbox. You won't receive unrelated or excessive emails.",
-  "No Sales Pitches: We won't flood your inbox with constant sales pitches or promotions.",
+  "Spam: We respect your inbox. You won't receive unrelated or excessive emails.",
+  "Sales Pitches: We won't flood your inbox with constant sales pitches or promotions.",
 ];
 
 export default function Subscribe() {
   return (
     <section id='subscribe' className='w-full my-6'>
       <h2 className='font-bold mb-4'>Subscribe</h2>
-      <ul className='mb-2'>
+      <ul className='mb-2 prose prose-neutral dark:prose-invert'>
+        <h3 className='text-sm font-medium'>You will get</h3>
         {whatYouGet.map((item) => (
           <li key={item} className='text-sm flex mb-1 items-center gap-1'>
             <svg
@@ -31,9 +32,8 @@ export default function Subscribe() {
             {item}
           </li>
         ))}
-      </ul>
 
-      <ul className='mb-2'>
+        <h3 className='text-sm font-medium'>You won&apos;t get</h3>
         {whatYouWontGet.map((item) => (
           <li key={item} className='text-sm mb-1 flex items-center gap-1'>
             <svg
@@ -54,6 +54,7 @@ export default function Subscribe() {
           </li>
         ))}
       </ul>
+
       <SubscriptionForm />
     </section>
   );

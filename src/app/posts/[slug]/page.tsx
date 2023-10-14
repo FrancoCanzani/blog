@@ -60,12 +60,12 @@ export default function Post({ params }: { params: { slug: string } }) {
 
   return (
     <main>
-      <h1 className='font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-tighter max-w-[650px]'>
+      <h1 className='font-bold text-xl sm:text-2xl tracking-tighter max-w-[650px]'>
         <Balancer>{post.title}</Balancer>
       </h1>
       <div className='flex mt-2 mb-8 text-sm max-w-[650px] gap-2 items-center justify-between'>
         <div className='flex gap-2 items-center justify-center text-xs text-gray-700 dark:text-gray-300 font-light'>
-          <p>{format(parseISO(post.date), 'LLLL d, yyyy')}</p>
+          <time>{format(parseISO(post.date), 'LLLL d, yyyy')}</time>
           {'•'}
           <span>{`${
             calculateReadingTime(post.body.raw) <= 1
