@@ -1,6 +1,4 @@
-export default function validateEmail(
-  email: FormDataEntryValue | null
-): boolean {
+export default function validateEmail(email: string | undefined): boolean {
   if (email === null) {
     return false;
   }

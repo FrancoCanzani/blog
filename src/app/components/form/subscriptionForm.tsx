@@ -12,25 +12,18 @@ export default function SubscriptionForm() {
   const [outcome, setOutcome] = useState<'success' | 'error' | null>(null);
 
   const handleSubscribe = async (FormData: FormData) => {
-    const userEmail = FormData.get('email');
-
-    if (!validateEmail(userEmail)) {
-      throw new Error('Please enter a valid email!');
-    }
-
     try {
-      await addEmail(userEmail);
+      const email = FormData.get('email')?.toString().trim();
+
+      if (!validateEmail(email)) {
+        throw new Error('Please enter a valid email!');
+      }
+
+      await addEmail(email);
       handleOutcome('success', 'Thanks for subscribing to Notes!');
       formRef?.current?.reset();
-    } catch (error) {
-      if (error instanceof Error) {
-        if (error.message === 'Email is already subscribed!') {
-          // Handle the case where the email is already in the database
-          handleError(error);
-        } else {
-          handleError(error);
-        }
-      }
+    } catch (error: unknown) {
+      handleError(error as Error);
     }
   };
 
