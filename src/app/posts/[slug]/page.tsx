@@ -28,9 +28,11 @@ export async function generateMetadata(
 
   return {
     title: post?.title,
+    description: post?.description,
     keywords: post?.keywords,
     openGraph: {
       title: post?.title,
+      description: post?.description,
       type: 'article',
       url: `https://franconotes.vercel.app/posts/${params.slug}`,
       images: [
