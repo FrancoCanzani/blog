@@ -4,7 +4,6 @@ import { useRef, useState } from 'react';
 import addEmail from '../../utils/actions/addEmail';
 import validateEmail from '../../utils/validateEmail';
 import SubmitButton from '../buttons/submitButton';
-import isEmailInDatabase from '@/app/utils/actions/isEmailInDatabase';
 import ValidationMessage from '../validationMessage';
 
 export default function SubscriptionForm() {
@@ -18,10 +17,6 @@ export default function SubscriptionForm() {
 
       if (!validateEmail(email)) {
         throw new Error('Please enter a valid email!');
-      }
-
-      if (await isEmailInDatabase(email)) {
-        throw new Error('It looks like you are already subscribed!');
       }
 
       await addEmail(FormData);
