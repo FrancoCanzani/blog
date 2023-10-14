@@ -5,7 +5,6 @@ import addEmail from '../../utils/actions/addEmail';
 import validateEmail from '../../utils/validateEmail';
 import SubmitButton from '../buttons/submitButton';
 import ValidationMessage from '../validationMessage';
-import isEmailInDatabase from '@/app/utils/actions/isEmailInDatabase';
 
 export default function SubscriptionForm() {
   const formRef = useRef<HTMLFormElement>(null);
@@ -19,21 +18,16 @@ export default function SubscriptionForm() {
       throw new Error('Please enter a valid email!');
     }
 
-    if (await isEmailInDatabase(userEmail)) {
-      throw new Error('Email is already subscribed.');
-    }
-
     try {
       await addEmail(userEmail);
       handleOutcome('success', 'Thanks for subscribing to Notes!');
       formRef?.current?.reset();
     } catch (error) {
       if (error instanceof Error) {
-        if (error.message === 'Email is already subscribed.') {
+        if (error.message === 'Email is already subscribed!') {
           // Handle the case where the email is already in the database
           handleError(error);
         } else {
-          // Handle other errors
           handleError(error);
         }
       }
