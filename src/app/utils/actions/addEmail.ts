@@ -4,10 +4,9 @@ import EmailModel from '../db/models/emails';
 import dbConnect from '../db/dbConnect';
 import isEmailInDatabase from './isEmailInDatabase';
 
-export default async function addEmail(formData: FormData) {
+export default async function addEmail(userEmail: FormDataEntryValue | null) {
   try {
     await dbConnect();
-    const userEmail = formData.get('email');
 
     // Check if the email is already in the database
     if (await isEmailInDatabase(userEmail)) {

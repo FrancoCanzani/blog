@@ -12,14 +12,14 @@ export default function SubscriptionForm() {
   const [outcome, setOutcome] = useState<'success' | 'error' | null>(null);
 
   const handleSubscribe = async (FormData: FormData) => {
+    const userEmail = FormData.get('email');
+
+    if (!validateEmail(userEmail)) {
+      throw new Error('Please enter a valid email!');
+    }
+
     try {
-      const email = FormData.get('email');
-
-      if (!validateEmail(email)) {
-        throw new Error('Please enter a valid email!');
-      }
-
-      const result = await addEmail(FormData);
+      await addEmail(userEmail);
       handleOutcome('success', 'Thanks for subscribing to Notes!');
       formRef?.current?.reset();
     } catch (error) {
