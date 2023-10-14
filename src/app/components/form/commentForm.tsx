@@ -27,6 +27,7 @@ export default function CommentForm({ postID }: { postID: string }) {
         name='comment'
         id='comment'
         placeholder='Comment'
+        required
         rows={2}
         className='bg-transparent dark:border-black dark:text-gray-100 outline-none border-b placeholder:text-gray-500 dark:placeholder:text-gray-300 py-2.5 px-2 text-sm w-full transition-all duration-300'
       />
