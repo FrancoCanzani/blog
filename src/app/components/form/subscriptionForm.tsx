@@ -5,6 +5,7 @@ import addEmail from '../../utils/actions/addEmail';
 import validateEmail from '../../utils/validateEmail';
 import SubmitButton from '../buttons/submitButton';
 import ValidationMessage from '../validationMessage';
+import isEmailInDatabase from '@/app/utils/actions/isEmailInDatabase';
 
 export default function SubscriptionForm() {
   const formRef = useRef<HTMLFormElement>(null);
@@ -16,6 +17,10 @@ export default function SubscriptionForm() {
 
     if (!validateEmail(userEmail)) {
       throw new Error('Please enter a valid email!');
+    }
+
+    if (await isEmailInDatabase(userEmail)) {
+      throw new Error('Email is already subscribed.');
     }
 
     try {
