@@ -19,11 +19,19 @@ export default function SubscriptionForm() {
         throw new Error('Please enter a valid email!');
       }
 
-      await addEmail(FormData);
+      const result = await addEmail(FormData);
       handleOutcome('success', 'Thanks for subscribing to Notes!');
       formRef?.current?.reset();
-    } catch (error: unknown) {
-      handleError(error as Error);
+    } catch (error) {
+      if (error instanceof Error) {
+        if (error.message === 'Email is already subscribed.') {
+          // Handle the case where the email is already in the database
+          handleError(error);
+        } else {
+          // Handle other errors
+          handleError(error);
+        }
+      }
     }
   };
 

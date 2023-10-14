@@ -2,34 +2,25 @@
 
 import EmailModel from '../db/models/emails';
 import dbConnect from '../db/dbConnect';
+import isEmailInDatabase from './isEmailInDatabase';
 
 export default async function addEmail(formData: FormData) {
   try {
     await dbConnect();
-    if (await isEmailInDatabase(formData.get('email'))) {
-      return;
+    const userEmail = formData.get('email');
+
+    // Check if the email is already in the database
+    if (await isEmailInDatabase(userEmail)) {
+      throw new Error('Email is already subscribed.');
     } else {
       const newEmail = new EmailModel({
-        email: formData.get('email'),
+        email: userEmail,
         subDate: new Date(),
       });
 
       const savedEmail = await newEmail.save();
     }
   } catch (e) {
-    throw new Error('There was an error adding the Email. Please try again.');
-  }
-}
-
-async function isEmailInDatabase(email: FormDataEntryValue | null) {
-  try {
-    const user = await EmailModel.findOne({ email: email });
-    if (user) {
-      return true;
-    } else {
-      return false;
-    }
-  } catch (error) {
-    return false;
+    throw e;
   }
 }
