@@ -14,7 +14,13 @@ export default async function CommentSection({ postID }: { postID: string }) {
         <SignIn />
       </div>
       {session && <CommentForm postID={postID} />}
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense
+        fallback={
+          <div className='bg-gray-100 mt-6 dark:bg-neutral-800 dark:text-gray-100 text-center w-full dark:border-gray-950 border rounded-md px-2 py-1.5'>
+            Loading comments...
+          </div>
+        }
+      >
         <Comments postID={postID} />
       </Suspense>
     </section>
