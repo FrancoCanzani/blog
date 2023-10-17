@@ -2,20 +2,6 @@
 
 This blog project relies on essential dependencies such as mdx-js, next.js, contentlayer, mongoose, next-auth, and tailwindcss, among others.
 
-## 🔍 Table of Contents
-
-- [💻 Stack](#stack)
-
-- [⚙️ Setting Up](#setting-up)
-
-- [🚀 Run Locally](#run-locally)
-
-- [🗺️ Roadmap](#roadmap)
-
-- [🙏 Acknowledgements](#acknowledgements)
-
-- [📜 Changelog](#changelog)
-
 ## 💻 Stack
 
 - [next-auth](https://github.com/nextauthjs/next-auth): Authentication library for Next.js projects.
