@@ -53,7 +53,7 @@ export async function GET(request: NextRequest) {
             margin: '0 42px',
             fontSize: 40,
             width: 'auto',
-            maxWidth: 550,
+            maxWidth: 650,
             textAlign: 'center',
             backgroundColor: 'black',
             color: 'white',

@@ -67,8 +67,9 @@ export default function SubscriptionForm() {
             name='email'
             className='bg-gray-100 w-3/4 dark:bg-neutral-800 dark:text-gray-100 dark:border-gray-950 border rounded-md px-2 py-1.5'
             placeholder='email@provider.com'
+            required
           />
-          <SubmitButton text='Subscribe' size='big' />
+          <SubmitButton text='Subscribe' className='w-1/4 py-1.5' />
         </div>
       </div>
       <div>
