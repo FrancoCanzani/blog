@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
-import { Sun, Moon } from 'lucide-react';
 
 export default function ThemeSwitch() {
   const [mounted, setMounted] = useState(false);
@@ -31,7 +30,7 @@ export default function ThemeSwitch() {
       }
       aria-pressed={theme === 'dark' ? 'true' : 'false'}
     >
-      {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
+      {theme === 'light' ? '[Dark]' : '[Light]'}
     </button>
   );
 }

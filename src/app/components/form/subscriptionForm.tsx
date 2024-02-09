@@ -1,79 +1,52 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import addEmail from '../../utils/actions/addEmail';
-import validateEmail from '../../utils/validateEmail';
 import SubmitButton from '../buttons/submitButton';
-import ValidationMessage from '../validationMessage';
+import { z } from 'zod';
+import { toast } from 'sonner';
 
 export default function SubscriptionForm() {
   const formRef = useRef<HTMLFormElement>(null);
-  const [message, setMessage] = useState<string | null>(null);
-  const [outcome, setOutcome] = useState<'success' | 'error' | null>(null);
 
   const handleSubscribe = async (FormData: FormData) => {
+    const emailSchema = z.string().email();
+
     try {
-      const email = FormData.get('email')?.toString().trim();
+      const email = FormData.get('email');
+      const validation = emailSchema.safeParse(email);
 
-      if (!validateEmail(email)) {
-        throw new Error('Please enter a valid email!');
+      if (validation.success) {
+        await addEmail(FormData);
+        formRef?.current?.reset();
+        toast.success('Subscription successful!');
+      } else {
+        if (validation.error.errors[0].code === 'invalid_string') {
+          toast.error('Please enter a valid email address.');
+        } else {
+          toast.error(validation.error.message);
+        }
       }
-
-      await addEmail(email);
-      handleOutcome('success', 'Thanks for subscribing to Notes!');
-      formRef?.current?.reset();
-    } catch (error: unknown) {
-      handleError(error as Error);
+    } catch (error) {
+      toast.error('Error subscribing. Please try again!');
     }
   };
 
-  const handleError = (error: Error) => {
-    setOutcome('error');
-    setMessage(error.message);
-
-    setTimeout(() => {
-      setMessage(null);
-      setOutcome(null);
-    }, 2500);
-  };
-
-  const handleOutcome = (type: 'success' | 'error', message: string) => {
-    setOutcome(type);
-    setMessage(message);
-
-    setTimeout(() => {
-      setMessage(null);
-      if (type === 'success') {
-        setOutcome(null);
-      }
-    }, 2500);
-  };
-
   return (
-    <form
-      className='mt-8'
-      ref={formRef}
-      action={async (FormData) => {
-        handleSubscribe(FormData);
-      }}
-    >
+    <form ref={formRef} action={handleSubscribe}>
       <div className='flex flex-col my-3'>
-        <label htmlFor='email' className='text-sm font-semibold mb-1'>
+        <label htmlFor='email' className='text-xs font-semibold mb-1'>
           Email
         </label>
         <div className='flex items-center w-full space-x-1'>
           <input
             id='email'
             name='email'
-            className='bg-gray-100 w-3/4 dark:bg-neutral-800 dark:text-gray-100 dark:border-gray-950 border rounded-md px-2 py-1.5'
+            className='bg-gray-50 w-3/4 dark:bg-neutral-800 dark:text-gray-100 dark:border-gray-950 border rounded-sm p-1'
             placeholder='email@provider.com'
-            required
           />
-          <SubmitButton text='Subscribe' className='w-1/4 py-1.5' />
+          <SubmitButton text='Subscribe' className='w-1/4' />
         </div>
-      </div>
-      <div>
-        <ValidationMessage message={message} outcome={outcome} />
       </div>
     </form>
   );

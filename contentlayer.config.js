@@ -21,11 +21,17 @@ export const Post = defineDocumentType(() => ({
     },
     description: {
       type: 'string',
+      required: true,
+    },
+    image: {
+      type: 'string',
+      required: true,
     },
     keywords: {
       type: 'list',
       of: { type: 'string' },
       description: 'Keywords of the post',
+      required: true,
     },
     published: {
       type: 'boolean',

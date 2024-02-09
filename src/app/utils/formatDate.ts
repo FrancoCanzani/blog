@@ -18,11 +18,5 @@ export default function formatDate(date: string | Date) {
     formattedDate = 'Today';
   }
 
-  const fullDate = targetDate.toLocaleString('en-us', {
-    month: 'long',
-    day: 'numeric',
-    year: 'numeric',
-  });
-
-  return `${fullDate} (${formattedDate})`;
+  return formattedDate;
 }

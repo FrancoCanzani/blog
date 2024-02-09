@@ -1,17 +1,16 @@
-import SubscriptionModal from './form/subscriptionForm';
 import ThemeSwitch from './themeSwitch';
 import Link from 'next/link';
-import ScrollIntoViewButton from './buttons/scrollIntoViewButton';
 
 export default function Header() {
   return (
-    <header className='pt-4 pb-2 border-b dark:border-[#f6f3f1] border-black flex mb-7 items-center font-medium justify-between w-full'>
-      <Link href={'/'} className='text-2xl lg:text-3xl'>
-        Notes
+    <header className='pb-1 border-b text-xs border-black dark:border-[#f6f3f1] flex mb-5 items-center font-medium justify-between w-full'>
+      <Link href={'/'} className='font-semibold capitalize'>
+        Things I think about
       </Link>
       <div className='items-center gap-3 flex'>
         <ThemeSwitch />
-        <ScrollIntoViewButton />
+        <Link href={'/'}>[All posts]</Link>
+        <Link href={'/'}>[Topics]</Link>
       </div>
     </header>
   );

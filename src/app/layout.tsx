@@ -1,14 +1,14 @@
 import './globals.css';
 import ToggleProvider from './components/toggleProvider';
 import type { Metadata } from 'next';
-import { Lora } from 'next/font/google';
+import { Open_Sans } from 'next/font/google';
 import Footer from './components/footer';
 import Header from './components/header';
 import SessionProvider from './components/sessionProvider';
 import { getServerSession } from 'next-auth';
-import Subscribe from './components/subscribe';
+import { Toaster } from 'sonner';
 
-const lora = Lora({ subsets: ['latin'] });
+const open = Open_Sans({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: {
@@ -54,14 +54,14 @@ export default async function RootLayout({
   return (
     <html lang='en'>
       <body
-        className={`${lora.className} dark:bg-[#0c0a09] dark:text-[#f6f3f1] antialiased max-w-2xl m-auto`}
+        className={`${open.className} dark:bg-[#0c0a09] dark:text-[#f6f3f1] antialiased m-auto`}
       >
         <SessionProvider session={session}>
           <ToggleProvider>
-            <main className='p-6 pt-3 md:pt-6 min-h-screen'>
+            <main className='p-4 min-h-screen'>
               <Header />
               {children}
-              <Subscribe />
+              <Toaster />
             </main>
             <Footer />
           </ToggleProvider>
