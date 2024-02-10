@@ -14,9 +14,9 @@ export default function LatestPostCard({ post }: { post: Post }) {
   });
 
   return (
-    <div className='dark:bg-neutral-800 bg-gray-50 dark:text-gray-100 dark:border-gray-950 border border-black rounded-sm p-2 h-full w-full mb-2 flex justify-between'>
-      <div className='h-full w-2/5 flex items-start flex-col justify-between'>
-        <div className='flex flex-col items-start justify-between space-y-1'>
+    <div className='container rounded-sm p-2 lg:h-80 h-[26rem] border border-black bg-gray-50 flex w-full mb-2 dark:bg-neutral-800 dark:text-gray-100 dark:border-gray-950'>
+      <div className='flex w-full lg:w-1/2'>
+        <div className='flex flex-col space-y-1'>
           <ul className='flex items-center justify-start text-xs capitalize space-x-1'>
             [
             {post.keywords?.map((keyword, index) => (
@@ -28,36 +28,49 @@ export default function LatestPostCard({ post }: { post: Post }) {
             ]
           </ul>
           <Link
-            className='text-lg font-semibold hover:underline'
+            className='mt-2 text-xl font-bold leading-tight hover:underline text-gray-900 dark:text-gray-100'
             href={`/posts/${post._raw.flattenedPath}`}
           >
             {post.title}
           </Link>
           <p className='text-sm text-pretty'>{post.description}</p>
-        </div>
-        <div className='flex justify-between w-full'>
-          <div className='flex items-center justify-start'>
-            <p className='text-xs mr-1'>
-              {readingTime <= 1
-                ? '< 1 minute read'
-                : `${calculateReadingTime(post.body.raw)} minutes read`}{' '}
-            </p>
-            •
-            <time className='text-xs dark:text-gray-300 ml-1'>
-              {formatDate(post.date)}
-            </time>
+          <p className='text-sm text-pretty text-ellipsis h-0 overflow-hidden line-clamp-[9] lg:h-auto'>
+            {post.body.raw}
+          </p>
+          <div className='relative lg:hidden block flex-grow max-h-80 my-2 w-full'>
+            <Image
+              alt={post.title}
+              src={`/posts-images/${post.image}`}
+              layout='fill'
+              objectFit='cover'
+              priority
+              className='rounded-sm'
+            />
           </div>
-          <p className='text-xs'>{formattedDate}</p>
+          <div className='flex items-end lg:pr-2 justify-between text-xs dark:text-gray-100'>
+            <div className='flex items-center'>
+              <p className='text-xs mr-1 dark:text-gray-100'>
+                {readingTime <= 1
+                  ? '< 1 minute read'
+                  : `${calculateReadingTime(post.body.raw)} minutes read`}{' '}
+              </p>
+              •
+              <time className='text-xs dark:text-gray-100 ml-1'>
+                {formatDate(post.date)}
+              </time>
+            </div>
+            <span className='text-xs dark:text-gray-100'>{formattedDate}</span>
+          </div>
         </div>
       </div>
-      <div className='relative h-60 my-2 w-1/2'>
+      <div className='relative hidden lg:block flex-grow max-h-80 my-2 w-2/3'>
         <Image
           alt={post.title}
           src={`/posts-images/${post.image}`}
-          sizes='(max-width: 768px) 213px, 33vw'
+          layout='fill'
+          objectFit='cover'
           priority
-          fill
-          className='object-cover rounded-sm object-[-16px] sm:object-center'
+          className='rounded-sm'
         />
       </div>
     </div>

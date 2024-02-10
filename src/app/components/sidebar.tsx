@@ -23,48 +23,46 @@ export default function Sidebar() {
   });
 
   return (
-    <aside className='sm:pr-10 w-full sm:max-w-sm space-y-6'>
-      <div className='sticky top-12 flex flex-col'>
-        <section className='w-full mb-6'>
-          <h2 className='font-bold text-xl mb-3'>My Notes</h2>
-          <p className='text-pretty text-sm'>
-            Things I Think About puts together my reflections on the latest news
-            and trends in tech. From coding tips to industry insights, join me
-            on a journey through the ever-evolving landscape of programming and
-            innovation.
-          </p>
-        </section>
-        <section className='w-full mb-6'>
-          <div className='flex items-center justify-between mb-4'>
-            <h2 className='font-bold'>Latest posts</h2>
-            <Link href={'/posts/allPosts'} className='text-xs hover:underline'>
-              All posts
-            </Link>
-          </div>
-          {slicedPosts.map((post, idx) => (
-            <LatestPostCard key={idx} post={post} />
+    <aside className='md:pr-10 mb-6 md:mb-0 w-full md:max-w-sm sticky lg:h-screen space-y-6'>
+      <section className='w-full'>
+        <h2 className='font-bold text-xl mb-3'>My Notes</h2>
+        <p className='text-pretty text-sm'>
+          Things I Think About puts together my reflections on the latest news
+          and trends in tech. From coding tips to industry insights, join me on
+          a journey through the ever-evolving landscape of programming and
+          innovation.
+        </p>
+      </section>
+      <section className='w-full'>
+        <div className='flex items-center justify-between mb-4'>
+          <h2 className='font-bold'>Latest posts</h2>
+          <Link href={'/posts/allPosts'} className='text-xs hover:underline'>
+            All posts
+          </Link>
+        </div>
+        {slicedPosts.map((post, idx) => (
+          <LatestPostCard key={idx} post={post} />
+        ))}
+      </section>
+      <section className='w-full'>
+        <h3 className='font-bold mb-3'>Topics covered</h3>
+        <ul>
+          {topics.map((topic) => (
+            <li key={topic}>
+              <Link
+                href={`/topics/${topic.replaceAll(' ', '_')}`}
+                className='underline text-xs capitalize'
+              >
+                #{topic}
+              </Link>
+            </li>
           ))}
-        </section>
-        <section className='w-full mb-6'>
-          <h3 className='font-bold mb-3'>Topics covered</h3>
-          <ul>
-            {topics.map((topic) => (
-              <li key={topic}>
-                <Link
-                  href={`/topics/${topic.replaceAll(' ', '_')}`}
-                  className='underline text-xs capitalize'
-                >
-                  #{topic}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
-        <section>
-          <h3 className='font-bold mb-3'>Subscribe</h3>
-          <SubscriptionForm />
-        </section>
-      </div>
+        </ul>
+      </section>
+      <section>
+        <h3 className='font-bold mb-3'>Subscribe</h3>
+        <SubscriptionForm />
+      </section>
     </aside>
   );
 }

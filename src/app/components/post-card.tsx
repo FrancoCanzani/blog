@@ -14,7 +14,7 @@ export default function PostCard({ post }: { post: Post }) {
   });
 
   return (
-    <div className='dark:bg-neutral-800 bg-gray-50 dark:text-gray-100 dark:border-gray-950 border border-black rounded-sm p-2 h-full flex flex-col'>
+    <div className='dark:bg-neutral-800 bg-gray-50 dark:text-gray-100 dark:border-gray-950 border border-black rounded-sm p-2 h-[26rem] flex flex-col'>
       <div className='flex items-start flex-col justify-between space-y-1'>
         <ul className='flex items-center justify-start text-xs capitalize space-x-1'>
           [
@@ -27,22 +27,21 @@ export default function PostCard({ post }: { post: Post }) {
           ]
         </ul>
         <Link
-          className='text-lg font-semibold hover:underline'
+          className='mt-2 text-xl font-bold leading-tight hover:underline text-gray-900 dark:text-gray-100'
           href={`/posts/${post._raw.flattenedPath}`}
         >
           {post.title}
         </Link>
         <p className='text-sm text-pretty'>{post.description}</p>
       </div>
-
-      <div className='relative h-60 my-2'>
+      <div className='relative flex-grow max-h-80 my-2 w-full'>
         <Image
           alt={post.title}
           src={`/posts-images/${post.image}`}
-          sizes='(max-width: 768px) 213px, 33vw'
+          layout='fill'
+          objectFit='cover'
           priority
-          fill
-          className='object-cover rounded-sm object-[-16px] sm:object-center'
+          className='rounded-sm'
         />
       </div>
       <div className='flex items-center justify-between'>

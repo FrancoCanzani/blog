@@ -3,7 +3,7 @@ import { getMDXComponent } from 'next-contentlayer/hooks';
 import { format, parseISO } from 'date-fns';
 import calculateReadingTime from '@/app/utils/calculateReadingTime';
 import CommentSection from '@/app/components/commentSection';
-import Balancer from 'react-wrap-balancer';
+import Sidebar from '@/app/components/sidebar';
 
 import { Metadata, ResolvingMetadata } from 'next';
 
@@ -61,25 +61,30 @@ export default function Post({ params }: { params: { slug: string } }) {
   }
 
   return (
-    <main>
-      <h1 className='font-bold text-xl sm:text-2xl tracking-tighter max-w-[650px]'>
-        <Balancer>{post.title}</Balancer>
-      </h1>
-      <div className='flex mt-2 mb-8 text-sm max-w-[650px] gap-2 items-center justify-between'>
-        <div className='flex gap-2 items-center justify-center text-xs text-gray-700 dark:text-gray-300 font-light'>
-          <time>{format(parseISO(post.date), 'LLLL d, yyyy')}</time>
-          {'•'}
-          <span>{`${
-            calculateReadingTime(post.body.raw) <= 1
-              ? '< 1 minute read'
-              : `${calculateReadingTime(post.body.raw)} minutes read`
-          }`}</span>
-        </div>
+    <main className='flex flex-col items-start justify-start md:flex-row'>
+      <div className='hidden lg:block'>
+        <Sidebar />
       </div>
-      <article className='prose dark:prose-invert'>
-        <MDXContent />
-      </article>
-      <CommentSection postID={post._raw.flattenedPath} />
+      <div className='flex-1 w-full lg:max-w-3xl'>
+        <h1 className='font-bold text-xl sm:text-2xl text-balance tracking-tighter'>
+          {post.title}
+        </h1>
+        <div className='flex mt-2 mb-8 text-sm gap-2 items-center justify-between'>
+          <div className='flex gap-2 items-center justify-center text-xs dark:text-gray-300'>
+            <time>{format(parseISO(post.date), 'LLLL d, yyyy')}</time>
+            {'•'}
+            <span>{`${
+              calculateReadingTime(post.body.raw) <= 1
+                ? '< 1 minute read'
+                : `${calculateReadingTime(post.body.raw)} minutes read`
+            }`}</span>
+          </div>
+        </div>
+        <article className='prose-sm dark:prose-invert'>
+          <MDXContent />
+        </article>
+        <CommentSection postID={post._raw.flattenedPath} />
+      </div>
     </main>
   );
 }
