@@ -3,7 +3,6 @@ import PostCard from './post-card';
 import LatestPostCard from './lastest-post-card';
 
 export function PreviewPosts() {
-  // Sort date asc
   const posts = allPosts.sort((a, b) => (a.date < b.date ? 1 : -1));
 
   return (

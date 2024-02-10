@@ -42,11 +42,11 @@ export default function AllPosts() {
           <input
             type='text'
             placeholder='Filter by keywords...'
-            className='bg-gray-50 w-fit dark:bg-neutral-800 dark:text-gray-100 dark:border-gray-950 border rounded-sm p-1'
+            className='bg-gray-100 w-fit dark:bg-neutral-800 dark:text-gray-100 dark:border-gray-950 border rounded-sm p-1'
             onChange={handleFilterChange}
           />
         </div>
-        <p className='rounded-sm dark:bg-neutral-800 border-l-neutral-800 dark:border-l-gray-100 border-l-4 dark:text-gray-100 dark:border-gray-950 border text-sm bg-gray-50 p-2 mb-4'>
+        <p className='rounded-sm dark:bg-neutral-800 border-l-neutral-800 dark:border-l-gray-100 border-l-4 dark:text-gray-100 dark:border-gray-950 border text-sm bg-gray-100 p-2 mb-4'>
           This search functionality utilizes the{' '}
           <a
             className='text-blue-600 hover:underline'
@@ -82,7 +82,7 @@ export default function AllPosts() {
 
 function MiniPostCard({ post }: { post: Post }) {
   return (
-    <div className='dark:bg-neutral-800 bg-gray-50 dark:text-gray-100 dark:border-gray-950 border shadow rounded-sm p-2.5 flex flex-col'>
+    <div className='dark:bg-neutral-800 bg-gray-100 dark:text-gray-100 dark:border-gray-950 border rounded-sm p-2.5 flex flex-col'>
       <div className='flex items-start flex-col justify-between space-y-1'>
         <ul className='flex flex-wrap items-center justify-start text-xs capitalize space-x-1'>
           {post.keywords?.map((keyword, index) => (

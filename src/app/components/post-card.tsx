@@ -14,7 +14,7 @@ export default function PostCard({ post }: { post: Post }) {
   });
 
   return (
-    <div className='dark:bg-neutral-800 bg-gray-50 dark:text-gray-100 dark:border-gray-950 border shadow rounded-sm p-2.5 h-[26rem] flex flex-col'>
+    <div className='dark:bg-neutral-800 bg-gray-100 dark:text-gray-100 dark:border-gray-950 border rounded-sm p-2.5 h-[26rem] flex flex-col'>
       <div className='flex items-start flex-col justify-between space-y-1'>
         <ul className='flex items-center justify-start text-xs capitalize space-x-1'>
           [

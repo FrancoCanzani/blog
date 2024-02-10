@@ -5,14 +5,19 @@ import { Comment } from '@/app/utils/db/models/comments';
 import deleteComment from '@/app/utils/actions/deleteComment';
 import { revalidatePath } from 'next/cache';
 
-export default function DeleteComment({ comment }: { comment: Comment }) {
+export default function DeleteComment({
+  comment,
+  postID,
+}: {
+  comment: Comment;
+  postID: string;
+}) {
   return (
     <button
       onClick={() => {
         deleteComment(comment._id);
-        revalidatePath('/posts');
+        revalidatePath(`/posts/${postID}`);
       }}
-      className='active:active:translate-y-0.5 transition-all duration-100'
       aria-label='delete'
     >
       <Trash2 size={15} />

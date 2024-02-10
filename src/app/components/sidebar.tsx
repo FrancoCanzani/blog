@@ -66,9 +66,9 @@ export default function Sidebar() {
 
 function LatestPostCard({ post }: { post: Post }) {
   return (
-    <div className='mb-3 text-xs space-x-1 bg-gray-50 dark:bg-neutral-800 dark:text-gray-100 dark:border-gray-950 border shadow rounded-sm font-medium px-2 py-1.5'>
+    <div className='mb-3 text-sm space-x-1 bg-gray-100 dark:bg-neutral-800 dark:text-gray-100 dark:border-gray-950 border rounded-sm px-2 py-1.5'>
       <Link
-        className='hover:underline'
+        className='hover:underline font-medium'
         href={`/posts/${post._raw.flattenedPath}`}
       >
         {post.title} -

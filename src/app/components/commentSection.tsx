@@ -13,8 +13,7 @@ export default async function CommentSection({ postID }: { postID: string }) {
         <h2 className='font-semibold text-xl'>Comments</h2>
         <SignIn />
       </div>
-      {/* {session && <CommentForm postID={postID} />} */}
-      <CommentForm postID={postID} />
+      {session && <CommentForm postID={postID} />}
 
       <Suspense
         fallback={

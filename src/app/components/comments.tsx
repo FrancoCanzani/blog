@@ -17,14 +17,20 @@ export default async function Comments({ postID }: { postID: string }) {
             index == 0 ? 'mt-6' : 'mt-3'
           } bg-gray-100 dark:bg-neutral-800 dark:text-gray-100 dark:border-gray-950 border rounded-sm px-2 py-1.5`}
         >
-          <Comment comment={comment} />
+          <Comment comment={comment} postID={postID} />
         </li>
       ))}
     </ol>
   );
 }
 
-async function Comment({ comment }: { comment: Comment }) {
+async function Comment({
+  comment,
+  postID,
+}: {
+  comment: Comment;
+  postID: string;
+}) {
   const session = await getServerSession();
 
   return (
@@ -42,7 +48,7 @@ async function Comment({ comment }: { comment: Comment }) {
           <div className='flex items-center justify-between w-full'>
             <span className='text-sm'>{comment.user.name}</span>
             {session && session?.user?.email == comment.user.email && (
-              <DeleteComment comment={comment} />
+              <DeleteComment comment={comment} postID={postID} />
             )}
           </div>
           <span className='text-xs font-semibold'>

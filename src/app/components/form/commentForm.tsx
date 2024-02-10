@@ -36,7 +36,7 @@ export default function CommentForm({ postID }: { postID: string }) {
           Commenting as{' '}
           <span className='font-semibold'>{session?.user?.name}</span>
         </p>
-        <SubmitButton text='Comment' className='w-1/6 py-1 text-sm' />
+        <SubmitButton text='Comment' className='w-fit py-1 text-sm' />
       </div>
     </form>
   );
