@@ -3,14 +3,16 @@
 import { Trash2 } from 'lucide-react';
 import { Comment } from '@/app/utils/db/models/comments';
 import deleteComment from '@/app/utils/actions/deleteComment';
-import { revalidatePath } from 'next/cache';
+import { useRouter } from 'next/navigation';
 
 export default function DeleteComment({ comment }: { comment: Comment }) {
+  const router = useRouter();
+
   return (
     <button
       onClick={() => {
         deleteComment(comment._id);
-        revalidatePath(`/posts/[slug]`, 'page');
+        router.refresh();
       }}
       aria-label='delete'
     >
