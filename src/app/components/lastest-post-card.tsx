@@ -15,7 +15,7 @@ export default function LatestPostCard({ post }: { post: Post }) {
 
   return (
     <div className='rounded-sm p-2.5 lg:h-80 h-[26rem] border bg-gray-100 flex w-full mb-3 dark:bg-neutral-800 dark:text-gray-100 dark:border-gray-950'>
-      <div className='flex w-full lg:w-1/2'>
+      <div className='flex w-full lg:w-1/2 lg:pr-5'>
         <div className='flex flex-col space-y-1'>
           <ul className='flex items-center justify-start text-xs capitalize space-x-1'>
             [
@@ -34,7 +34,7 @@ export default function LatestPostCard({ post }: { post: Post }) {
             {post.title}
           </Link>
           <p className='text-sm text-pretty'>{post.description}</p>
-          <p className='text-sm text-pretty text-ellipsis h-0 overflow-hidden line-clamp-[9] lg:h-auto'>
+          <p className='text-sm text-pretty text-ellipsis my-2 overflow-hidden line-clamp-[9] h-0 lg:h-auto'>
             {post.body.raw}
           </p>
           <div className='relative lg:hidden block flex-grow max-h-80 my-2 w-full'>
@@ -47,7 +47,7 @@ export default function LatestPostCard({ post }: { post: Post }) {
               className='rounded-sm'
             />
           </div>
-          <div className='flex items-end lg:pr-2 justify-between text-xs dark:text-gray-100'>
+          <div className='flex items-end justify-between text-xs dark:text-gray-100'>
             <span className='text-xs dark:text-gray-100'>{formattedDate}</span>
             <div className='flex items-center'>
               <p className='text-xs mr-1 dark:text-gray-100'>
@@ -63,7 +63,7 @@ export default function LatestPostCard({ post }: { post: Post }) {
           </div>
         </div>
       </div>
-      <div className='relative hidden lg:block flex-grow max-h-80 my-2 w-2/3'>
+      <div className='relative hidden lg:block flex-grow max-h-80 my-2 w-1/2'>
         <Image
           alt={post.title}
           src={`/posts-images/${post.image}`}
