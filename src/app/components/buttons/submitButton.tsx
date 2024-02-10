@@ -2,7 +2,7 @@
 
 import { cn } from '@/app/utils/cn';
 import { useFormStatus } from 'react-dom';
-import { HTMLAttributes } from 'React';
+import { HTMLAttributes } from 'react';
 
 interface SubmitButton extends HTMLAttributes<HTMLButtonElement> {
   text: string;
