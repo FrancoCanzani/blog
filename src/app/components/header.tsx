@@ -10,7 +10,6 @@ export default function Header() {
       <div className='items-center gap-3 flex'>
         <ThemeSwitch />
         <Link href={'/posts/search'}>[Search posts]</Link>
-        <Link href={'/'}>[Topics]</Link>
       </div>
     </header>
   );

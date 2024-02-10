@@ -1,12 +1,23 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Sidebar from '@/app/components/sidebar';
 import { allPosts, Post } from 'contentlayer/generated';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 
 export default function AllPosts() {
   const [filterKeywords, setFilterKeywords] = useState<string[]>([]);
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const topic = searchParams.get('topic');
+    if (topic) {
+      setFilterKeywords(topic.split(',').map((keyword) => keyword.trim()));
+    } else {
+      setFilterKeywords([]);
+    }
+  }, [searchParams]);
 
   const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFilterKeywords(
@@ -23,13 +34,6 @@ export default function AllPosts() {
         post.body.raw.toLowerCase().includes(keyword.toLowerCase())
     );
   });
-
-  // Function to generate URL with highlighted text fragment
-  const generateUrlWithFragment = (post: Post, keywords: string[]) => {
-    const baseUrl = `/posts/${post._raw.flattenedPath}`;
-    const fragment = `#:~:text=${encodeURIComponent(keywords.join(','))}`;
-    return baseUrl + fragment;
-  };
 
   return (
     <main className='flex flex-col items-start justify-start md:flex-row'>
@@ -72,7 +76,11 @@ export default function AllPosts() {
 
         <ol className='grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-3'>
           {filteredPosts.map((post) => (
-            <MiniPostCard post={post} key={post._id} />
+            <MiniPostCard
+              post={post}
+              filterKeywords={filterKeywords}
+              key={post._id}
+            />
           ))}
         </ol>
       </section>
@@ -80,7 +88,20 @@ export default function AllPosts() {
   );
 }
 
-function MiniPostCard({ post }: { post: Post }) {
+function MiniPostCard({
+  post,
+  filterKeywords,
+}: {
+  post: Post;
+  filterKeywords: string[];
+}) {
+  // Function to generate URL with highlighted text fragment
+  const generateUrlWithFragment = (post: Post, keywords: string[]) => {
+    const baseUrl = `/posts/${post._raw.flattenedPath}`;
+    const fragment = `#:~:text=${encodeURIComponent(keywords.join(','))}`;
+    return baseUrl + fragment;
+  };
+
   return (
     <div className='dark:bg-neutral-800 bg-gray-100 dark:text-gray-100 dark:border-gray-950 border rounded-sm p-2.5 flex flex-col'>
       <div className='flex items-start flex-col justify-between space-y-1'>
@@ -94,7 +115,7 @@ function MiniPostCard({ post }: { post: Post }) {
         </ul>
         <Link
           className='mt-2 text-base font-bold leading-tight hover:underline visited:opacity-85 text-gray-900 dark:text-gray-100'
-          href={`/posts/${post._raw.flattenedPath}`}
+          href={generateUrlWithFragment(post, filterKeywords)}
         >
           {post.title}
         </Link>

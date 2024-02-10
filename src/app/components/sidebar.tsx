@@ -47,7 +47,7 @@ export default function Sidebar() {
           {topics.map((topic) => (
             <li key={topic}>
               <Link
-                href={`/topics/${topic.replaceAll(' ', '_')}`}
+                href={`/posts/search?topic=${encodeURIComponent(topic)}`}
                 className='underline text-xs capitalize visited:opacity-85'
               >
                 #{topic}
