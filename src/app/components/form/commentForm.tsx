@@ -21,7 +21,7 @@ export default function CommentForm({ postID }: { postID: string }) {
           formRef?.current?.reset();
         }
       }}
-      className='mt-6 flex flex-col bg-gray-100 dark:bg-neutral-800 dark:text-gray-100 dark:border-gray-950 border rounded-md px-2 py-1.5'
+      className='mt-6 flex flex-col bg-gray-100 dark:bg-neutral-800 dark:text-gray-100 dark:border-gray-950 border rounded-sm px-2 py-1.5'
     >
       <textarea
         name='comment'

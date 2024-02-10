@@ -25,7 +25,7 @@ export default function TopicsCovered() {
           <span key={topic}>
             <Link
               href={`/topics/${topic.replaceAll(' ', '_')}`}
-              className='underline'
+              className='underline visited:opacity-85'
             >
               {topic}
             </Link>

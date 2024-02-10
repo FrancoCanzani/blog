@@ -46,8 +46,8 @@ export default function AllPosts() {
             onChange={handleFilterChange}
           />
         </div>
-        <p className='rounded-sm dark:bg-neutral-800 border-l-black dark:border-l-gray-100 border-l-4 dark:text-gray-100 dark:border-gray-950 border text-sm bg-gray-50 p-2 mb-2'>
-          This search functionality just uses the{' '}
+        <p className='rounded-sm dark:bg-neutral-800 border-l-neutral-800 dark:border-l-gray-100 border-l-4 dark:text-gray-100 dark:border-gray-950 border text-sm bg-gray-50 p-2 mb-4'>
+          This search functionality utilizes the{' '}
           <a
             className='text-blue-600 hover:underline'
             target='_blank'
@@ -55,21 +55,51 @@ export default function AllPosts() {
           >
             Text Fragments API
           </a>{' '}
-          to push the search inputs to the params and redirect to the searched
-          fragment.
+          to push the search inputs to the parameters and redirect to the
+          searched fragment. Please note that the styling with{' '}
+          <a
+            className='text-blue-600 hover:underline'
+            target='_blank'
+            href='https://developer.mozilla.org/en-US/docs/Web/CSS/::target-text'
+          >
+            ::target-text
+          </a>{' '}
+          is still experimental. This means that its behavior may vary across
+          different browsers. As a result, you may experience differences in how
+          the highlighted text fragments are displayed depending on the browser
+          you are using.
         </p>
-        <ol className='flex flex-wrap gap-2'>
+
+        <ol className='grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-3'>
           {filteredPosts.map((post) => (
-            <Link
-              key={post._id}
-              href={generateUrlWithFragment(post, filterKeywords)}
-              className='dark:bg-neutral-800 hover:underline text-sm bg-gray-50 dark:text-gray-100 dark:border-gray-950 border border-black rounded-sm p-1 flex'
-            >
-              {post.title}
-            </Link>
+            <MiniPostCard post={post} key={post._id} />
           ))}
         </ol>
       </section>
     </main>
+  );
+}
+
+function MiniPostCard({ post }: { post: Post }) {
+  return (
+    <div className='dark:bg-neutral-800 bg-gray-50 dark:text-gray-100 dark:border-gray-950 border shadow rounded-sm p-2.5 flex flex-col'>
+      <div className='flex items-start flex-col justify-between space-y-1'>
+        <ul className='flex flex-wrap items-center justify-start text-xs capitalize space-x-1'>
+          {post.keywords?.map((keyword, index) => (
+            <li key={keyword} className='inline-block'>
+              {keyword}
+              {index !== post.keywords.length - 1 && ','}
+            </li>
+          ))}
+        </ul>
+        <Link
+          className='mt-2 text-base font-bold leading-tight hover:underline visited:opacity-85 text-gray-900 dark:text-gray-100'
+          href={`/posts/${post._raw.flattenedPath}`}
+        >
+          {post.title}
+        </Link>
+        <p className='text-sm text-pretty'>{post.description}</p>
+      </div>
+    </div>
   );
 }

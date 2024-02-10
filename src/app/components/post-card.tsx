@@ -14,7 +14,7 @@ export default function PostCard({ post }: { post: Post }) {
   });
 
   return (
-    <div className='dark:bg-neutral-800 bg-gray-50 dark:text-gray-100 dark:border-gray-950 border border-black rounded-sm p-2 h-[26rem] flex flex-col'>
+    <div className='dark:bg-neutral-800 bg-gray-50 dark:text-gray-100 dark:border-gray-950 border shadow rounded-sm p-2.5 h-[26rem] flex flex-col'>
       <div className='flex items-start flex-col justify-between space-y-1'>
         <ul className='flex items-center justify-start text-xs capitalize space-x-1'>
           [
@@ -27,7 +27,7 @@ export default function PostCard({ post }: { post: Post }) {
           ]
         </ul>
         <Link
-          className='mt-2 text-xl font-bold leading-tight hover:underline text-gray-900 dark:text-gray-100'
+          className='mt-2 text-xl font-bold leading-tight hover:underline visited:opacity-85 text-gray-900 dark:text-gray-100'
           href={`/posts/${post._raw.flattenedPath}`}
         >
           {post.title}
@@ -45,6 +45,7 @@ export default function PostCard({ post }: { post: Post }) {
         />
       </div>
       <div className='flex items-center justify-between'>
+        <p className='text-xs'>{formattedDate}</p>
         <div className='flex items-center justify-start'>
           <p className='text-xs mr-1'>
             {readingTime <= 1
@@ -56,7 +57,6 @@ export default function PostCard({ post }: { post: Post }) {
             {formatDate(post.date)}
           </time>
         </div>
-        <p className='text-xs'>{formattedDate}</p>
       </div>
     </div>
   );

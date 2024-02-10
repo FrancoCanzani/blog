@@ -27,18 +27,15 @@ export default function Sidebar() {
       <section className='w-full'>
         <h2 className='font-bold text-xl mb-3'>My Notes</h2>
         <p className='text-pretty text-sm'>
-          Things I Think About puts together my reflections on the latest news
-          and trends in tech. From coding tips to industry insights, join me on
-          a journey through the ever-evolving landscape of programming and
-          innovation.
+          <span className='italic'>Things I Think About</span> puts together my
+          reflections on the latest news and trends in tech. From coding tips to
+          industry insights, join me on a journey through the ever-evolving
+          landscape of programming and innovation.
         </p>
       </section>
       <section className='w-full'>
         <div className='flex items-center justify-between mb-4'>
           <h2 className='font-bold'>Latest posts</h2>
-          <Link href={'/posts/allPosts'} className='text-xs hover:underline'>
-            All posts
-          </Link>
         </div>
         {slicedPosts.map((post, idx) => (
           <LatestPostCard key={idx} post={post} />
@@ -51,7 +48,7 @@ export default function Sidebar() {
             <li key={topic}>
               <Link
                 href={`/topics/${topic.replaceAll(' ', '_')}`}
-                className='underline text-xs capitalize'
+                className='underline text-xs capitalize visited:opacity-85'
               >
                 #{topic}
               </Link>
@@ -69,14 +66,14 @@ export default function Sidebar() {
 
 function LatestPostCard({ post }: { post: Post }) {
   return (
-    <div className='mb-3 text-xs space-x-2 bg-gray-50 dark:bg-neutral-800 dark:text-gray-100 dark:border-gray-950 border border-black rounded-sm px-2 py-1.5'>
+    <div className='mb-3 text-xs space-x-1 bg-gray-50 dark:bg-neutral-800 dark:text-gray-100 dark:border-gray-950 border shadow rounded-sm font-medium px-2 py-1.5'>
       <Link
         className='hover:underline'
         href={`/posts/${post._raw.flattenedPath}`}
       >
-        {post.title}
+        {post.title} -
       </Link>
-      <time className='text-xs text-gray-700 dark:text-gray-200 font-light'>
+      <time className='text-xs text-gray-600 dark:text-gray-200'>
         {formatDate(post.date)}
       </time>
     </div>

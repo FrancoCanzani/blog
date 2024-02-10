@@ -14,7 +14,7 @@ export default function LatestPostCard({ post }: { post: Post }) {
   });
 
   return (
-    <div className='container rounded-sm p-2 lg:h-80 h-[26rem] border border-black bg-gray-50 flex w-full mb-2 dark:bg-neutral-800 dark:text-gray-100 dark:border-gray-950'>
+    <div className='container rounded-sm p-2.5 lg:h-80 h-[26rem] border shadow bg-gray-50 flex w-full mb-3 dark:bg-neutral-800 dark:text-gray-100 dark:border-gray-950'>
       <div className='flex w-full lg:w-1/2'>
         <div className='flex flex-col space-y-1'>
           <ul className='flex items-center justify-start text-xs capitalize space-x-1'>
@@ -28,7 +28,7 @@ export default function LatestPostCard({ post }: { post: Post }) {
             ]
           </ul>
           <Link
-            className='mt-2 text-xl font-bold leading-tight hover:underline text-gray-900 dark:text-gray-100'
+            className='mt-2 text-xl font-bold leading-tight hover:underline visited:opacity-85 text-gray-900 dark:text-gray-100'
             href={`/posts/${post._raw.flattenedPath}`}
           >
             {post.title}

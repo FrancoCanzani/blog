@@ -10,7 +10,7 @@ export function PreviewPosts() {
     <section className='w-full mb-6'>
       <h2 className='font-bold mb-4'>Posts</h2>
       <LatestPostCard post={posts[0]} />
-      <ul className='grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-2'>
+      <ul className='grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-3'>
         {posts.slice(1).map((post, idx) => (
           <li key={idx}>
             <PostCard post={post} />

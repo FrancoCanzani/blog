@@ -15,7 +15,7 @@ export default async function Comments({ postID }: { postID: string }) {
           key={comment._id}
           className={`${
             index == 0 ? 'mt-6' : 'mt-3'
-          } bg-gray-100 dark:bg-neutral-800 dark:text-gray-100 dark:border-gray-950 border rounded-md px-2 py-1.5`}
+          } bg-gray-100 dark:bg-neutral-800 dark:text-gray-100 dark:border-gray-950 border rounded-sm px-2 py-1.5`}
         >
           <Comment comment={comment} />
         </li>

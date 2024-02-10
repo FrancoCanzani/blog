@@ -1,14 +1,13 @@
 'use client';
 
 import { useSession, signIn, signOut } from 'next-auth/react';
-import { Github } from 'lucide-react';
 
 export default function SignIn() {
   const { data: session } = useSession();
   if (session) {
     return (
       <button
-        className='dark:bg-gray-100 dark:text-black bg-neutral-800 text-gray-100 border-gray-950 border text-sm rounded-md px-2 py-1'
+        className='bg-neutral-800 text-gray-100 border-gray-950 border text-sm rounded-sm px-2 py-1'
         onClick={() => signOut()}
       >
         Sign out
@@ -17,11 +16,10 @@ export default function SignIn() {
   }
   return (
     <button
-      className='dark:bg-gray-100 flex items-center justify-center gap-0.5 dark:text-black bg-neutral-800 text-gray-100 border-gray-950 border text-sm rounded-md px-2 py-1'
+      className='bg-neutral-800 text-gray-100 border-gray-950 border text-sm rounded-sm px-2 py-1'
       onClick={() => signIn('github')}
     >
-      <Github size={18} />
-      <span className='ml-2'>Sign in to comment</span>
+      Sign in to comment
     </button>
   );
 }

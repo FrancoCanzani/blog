@@ -1,13 +1,13 @@
 'use server';
 
+import CommentModel from '../db/models/comments';
+import dbConnect from '../db/dbConnect';
+
 type authUser = {
   name?: string | null | undefined;
   email?: string | null | undefined;
   image?: string | null | undefined;
 };
-
-import CommentModel from '../db/models/comments';
-import dbConnect from '../db/dbConnect';
 
 export default async function addComment(
   formData: FormData,
@@ -28,6 +28,7 @@ export default async function addComment(
     });
 
     const savedComment = await newComment.save();
+    return savedComment;
   } catch (e) {
     console.error(e);
   }
