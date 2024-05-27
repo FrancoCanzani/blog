@@ -1,8 +1,8 @@
 import { Comment } from '../utils/db/models/comments';
 import formatDate from '../utils/formatDate';
-import { getServerSession } from 'next-auth';
 import DeleteComment from './buttons/deleteComment';
 import getComments from '../utils/getComments';
+import { auth } from 'auth';
 
 export default async function Comments({ postID }: { postID: string }) {
   const comments = await getComments(postID);
@@ -24,7 +24,7 @@ export default async function Comments({ postID }: { postID: string }) {
 }
 
 async function Comment({ comment }: { comment: Comment }) {
-  const session = await getServerSession();
+  const session = await auth();
 
   return (
     <div className='rounded-sm'>

@@ -15,7 +15,7 @@ export default function SubmitButton({ text, className }: SubmitButton) {
   return (
     <button
       className={cn(
-        'text-sm w-full flex items-center justify-center bg-stone-800 text-stone-100 rounded-sm py-1.5 px-2',
+        'text-sm w-full hover:opacity-85 flex items-center justify-center bg-stone-800 text-stone-100 rounded-sm py-1.5 px-2',
         className,
         {
           'opacity-70': pending,

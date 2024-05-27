@@ -39,7 +39,7 @@ export default function AllPosts() {
       <section className='flex-1 w-full'>
         <div className='flex items-end justify-between w-full mb-4 text-sm'>
           <h2 className='font-medium capitalize underline text-stone-700 dark:text-stone-200'>
-            Search post fragments
+            Search posts
           </h2>
           <input
             type='text'

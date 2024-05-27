@@ -1,17 +1,18 @@
 import SignIn from './buttons/signIn';
-import CommentForm from './form/commentForm';
-import { getServerSession } from 'next-auth';
+import SignOut from './buttons/signOut';
+import CommentForm from './forms/commentForm';
 import Comments from './comments';
 import { Suspense } from 'react';
+import { auth } from 'auth';
 
 export default async function CommentSection({ postID }: { postID: string }) {
-  const session = await getServerSession();
+  const session = await auth();
 
   return (
     <section className='mt-8'>
       <div className='pt-4 pb-2 dark:border-white border-b border-black flex items-center justify-between'>
         <h2 className='font-semibold'>Comments</h2>
-        <SignIn />
+        {session ? <SignOut /> : <SignIn />}
       </div>
       {session && <CommentForm postID={postID} />}
       <Suspense

@@ -12,9 +12,6 @@ export default function Header() {
         <Link href={'/posts/search'} className='hover:underline'>
           Search Posts
         </Link>
-        <a href='https://github.com/FrancoCanzani/blog' target='blank'>
-          {`<Source/>`}
-        </a>
       </div>
     </header>
   );

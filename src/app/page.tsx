@@ -1,5 +1,5 @@
 import { PreviewPosts } from './components/previewPosts';
-import SubscriptionForm from './components/form/subscriptionForm';
+import SubscriptionForm from './components/forms/subscriptionForm';
 
 export default function Home() {
   return (
