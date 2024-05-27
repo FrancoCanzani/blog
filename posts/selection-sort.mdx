@@ -1,0 +1,67 @@
+---
+title: 'Selection sort for dummies like me'
+date: 2024-05-27
+description: 'This article is part of my writings to solidify my concepts in DS and Algorithms.'
+image: 'selection-sort.png'
+keywords:
+  - selection sort
+  - algorithms
+---
+
+### What's Selection Sort?
+
+Selection sort is a sorting algorithm that works by iteratively finding the smallest element in an array and moving it to the front. This process continues until the entire array is sorted. Let's visualize this process with a real-world scenario: sorting employee data by compensation.
+
+Imagine the HR department wants to create a table on the company's intranet displaying all employee names and their compensation. Here's a sample list of employee data:
+
+```
+[
+{"name": "Alice", "compensation": 75000},
+{"name": "Bob", "compensation": 50000},
+{"name": "Charlie", "compensation": 60000},
+{"name": "Diana", "compensation": 90000},
+{"name": "Eve", "compensation": 65000}
+]
+```
+
+For simplicity, let's consider a list of only 5 employees, but in reality, this list could contain thousands of employees. How can we efficiently sort this data? One approach is using the selection sort algorithm.
+
+First, let's define a helper function to find the index of the employee with the lowest compensation:
+
+```
+const findLowestCompIndex = (arr) => {
+  let lowestCompIndex = 0;
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i].compensation < arr[lowestCompIndex].compensation) {
+      lowestCompIndex = i;
+    }
+  }
+  return lowestCompIndex;
+}
+```
+
+Now, let's apply the selection sort algorithm to the employees array:
+
+```
+const selectionSort = (arr) => {
+  const sortedArray = [];
+  while (arr.length > 0) {
+    const lowestCompIndex = findLowestCompIndex(arr);
+    const lowestPaidEmployee = arr.splice(lowestCompIndex, 1)[0];
+    sortedArray.push(lowestPaidEmployee);
+  }
+  return sortedArray;
+}
+```
+
+This code initializes an empty array sortedArray to store the sorted employees. It then iteratively finds the employee with the lowest compensation using the findLowestCompIndex function and moves that employee to the sortedArray. This process continues until all employees are sorted.
+
+![selection sort example](/posts-images/selection-sort-example.png)
+
+It's worth noting that the original array is mutated during the sorting process, so it's advisable to create a copy of the original array before applying the selection sort algorithm.
+
+### Performance
+
+Selection sort has a time complexity of O(n^2) in the worst-case scenario, where n is the number of elements in the array. Despite its simplicity, it is not the most efficient sorting algorithm for large datasets. However, it provides a clear illustration of sorting principles and can be useful for small datasets or educational purposes.
+
+_[Big-O](https://big-o.io/) represents the efficiency or performance of an algorithm._
