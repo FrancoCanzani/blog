@@ -21,7 +21,7 @@ export default function CommentForm({ postID }: { postID: string }) {
           formRef?.current?.reset();
         }
       }}
-      className='mt-6 flex flex-col bg-stone-100 dark:bg-neutral-800 dark:text-stone-100 dark:border-stone-950 border rounded-sm px-2 py-1.5'
+      className='mt-6 flex flex-col bg-stone-100 dark:bg-neutral-800 dark:text-stone-100 rounded-sm px-2 py-1.5'
     >
       <textarea
         name='comment'
@@ -29,7 +29,7 @@ export default function CommentForm({ postID }: { postID: string }) {
         placeholder='Comment'
         required
         rows={2}
-        className='bg-transparent dark:border-black dark:text-stone-100 outline-none border-b placeholder:text-stone-500 dark:placeholder:text-stone-300 py-2.5 px-2 text-sm w-full transition-all duration-300'
+        className='bg-transparent dark:border-stone-800 dark:text-stone-100 outline-none border-b placeholder:text-stone-500 dark:placeholder:text-stone-300 py-2.5 px-2 text-sm w-full transition-all duration-300'
       />
       <div className='w-full py-2.5 px-2 flex items-center justify-between'>
         <p className='text-xs w-3/4 dark:text-stone-300 italic'>

@@ -16,7 +16,7 @@ export default function DeleteComment({ comment }: { comment: Comment }) {
       }}
       aria-label='delete'
     >
-      <Trash2 size={14} />
+      <Trash2 size={15} />
     </button>
   );
 }

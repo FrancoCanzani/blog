@@ -14,7 +14,7 @@ export default async function Comments({ postID }: { postID: string }) {
           key={comment._id}
           className={`${
             index == 0 ? 'mt-6' : 'mt-3'
-          } bg-stone-100 dark:bg-neutral-800 dark:text-stone-100 dark:border-stone-950 border rounded-sm px-2 py-1.5`}
+          } bg-stone-100 dark:bg-stone-800 dark:text-stone-100 rounded-sm px-2 py-1.5`}
         >
           <Comment comment={comment} />
         </li>
@@ -33,7 +33,7 @@ async function Comment({ comment }: { comment: Comment }) {
           <p className='text-sm'>
             By <span className='font-medium'>{comment.user.name}</span>
           </p>
-          <div className='flex items-end justify-center space-x-1'>
+          <div className='flex items-end justify-center space-x-3'>
             <span className='text-xs font-medium'>
               {formatDate(comment.timestamp)}
             </span>
