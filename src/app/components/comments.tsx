@@ -1,5 +1,4 @@
 import { Comment } from '../utils/db/models/comments';
-import Image from 'next/image';
 import formatDate from '../utils/formatDate';
 import { getServerSession } from 'next-auth';
 import DeleteComment from './buttons/deleteComment';
@@ -15,7 +14,7 @@ export default async function Comments({ postID }: { postID: string }) {
           key={comment._id}
           className={`${
             index == 0 ? 'mt-6' : 'mt-3'
-          } bg-gray-100 dark:bg-neutral-800 dark:text-gray-100 dark:border-gray-950 border rounded-sm px-2 py-1.5`}
+          } bg-stone-100 dark:bg-neutral-800 dark:text-stone-100 dark:border-stone-950 border rounded-sm px-2 py-1.5`}
         >
           <Comment comment={comment} />
         </li>
@@ -28,29 +27,23 @@ async function Comment({ comment }: { comment: Comment }) {
   const session = await getServerSession();
 
   return (
-    <>
+    <div className='rounded-sm'>
       <div className='flex items-center mb-3'>
-        <Image
-          src={comment.user.picture}
-          height={30}
-          width={30}
-          alt={comment.user.name}
-          className='rounded-full mr-3'
-        />
-
-        <div className='flex items-start w-full flex-col'>
-          <div className='flex items-center justify-between w-full'>
-            <span className='text-sm'>{comment.user.name}</span>
+        <div className='flex items-center w-full justify-between'>
+          <p className='text-sm'>
+            By <span className='font-medium'>{comment.user.name}</span>
+          </p>
+          <div className='flex items-end justify-center space-x-1'>
+            <span className='text-xs font-medium'>
+              {formatDate(comment.timestamp)}
+            </span>
             {session && session?.user?.email == comment.user.email && (
               <DeleteComment comment={comment} />
             )}
           </div>
-          <span className='text-xs font-semibold'>
-            {formatDate(comment.timestamp)}
-          </span>
         </div>
       </div>
-      <p className='text-sm'>{comment.comment}</p>
-    </>
+      <p className='text-sm text-pretty'>{comment.comment}</p>
+    </div>
   );
 }

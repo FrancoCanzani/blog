@@ -22,31 +22,6 @@ export async function GET(request: NextRequest) {
       >
         <div
           style={{
-            left: 42,
-            top: 42,
-            position: 'absolute',
-            display: 'flex',
-            alignItems: 'center',
-          }}
-        >
-          <span
-            style={{
-              width: 24,
-              height: 24,
-              background: 'black',
-            }}
-          />
-          <span
-            style={{
-              marginLeft: 8,
-              fontSize: 20,
-            }}
-          >
-            notes.com
-          </span>
-        </div>
-        <div
-          style={{
             display: 'flex',
             flexWrap: 'wrap',
             justifyContent: 'center',

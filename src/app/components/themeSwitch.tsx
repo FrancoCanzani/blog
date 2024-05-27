@@ -29,8 +29,9 @@ export default function ThemeSwitch() {
         theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'
       }
       aria-pressed={theme === 'dark' ? 'true' : 'false'}
+      className='hover:underline'
     >
-      {theme === 'light' ? '[Dark]' : '[Light]'}
+      {theme === 'light' ? 'Dark' : 'Light'}
     </button>
   );
 }

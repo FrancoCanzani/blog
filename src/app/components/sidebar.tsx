@@ -66,14 +66,14 @@ export default function Sidebar() {
 
 function LatestPostCard({ post }: { post: Post }) {
   return (
-    <div className='mb-3 text-sm space-x-1 bg-gray-100 dark:bg-neutral-800 dark:text-gray-100 dark:border-gray-950 border rounded-sm px-2 py-1.5'>
+    <div className='mb-3 text-sm space-x-1 bg-stone-100 dark:bg-neutral-800 dark:text-stone-100 dark:border-stone-950 border rounded-sm px-2 py-1.5'>
       <Link
         className='hover:underline font-medium'
         href={`/posts/${post._raw.flattenedPath}`}
       >
         {post.title} -
       </Link>
-      <time className='text-xs text-gray-600 dark:text-gray-200'>
+      <time className='text-xs text-stone-600 dark:text-stone-200'>
         {formatDate(post.date)}
       </time>
     </div>

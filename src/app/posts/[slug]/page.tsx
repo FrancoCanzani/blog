@@ -3,7 +3,6 @@ import { getMDXComponent } from 'next-contentlayer/hooks';
 import { format, parseISO } from 'date-fns';
 import calculateReadingTime from '@/app/utils/calculateReadingTime';
 import CommentSection from '@/app/components/commentSection';
-import Sidebar from '@/app/components/sidebar';
 
 import { Metadata, ResolvingMetadata } from 'next';
 
@@ -61,16 +60,13 @@ export default function Post({ params }: { params: { slug: string } }) {
   }
 
   return (
-    <main className='flex flex-col items-start justify-start md:flex-row'>
-      <div className='hidden lg:block'>
-        <Sidebar />
-      </div>
+    <main className='flex flex-col items-start justify-start'>
       <div className='flex-1 w-full lg:max-w-3xl'>
         <h1 className='font-bold text-xl sm:text-2xl text-balance tracking-tighter'>
           {post.title}
         </h1>
         <div className='flex mt-2 mb-8 text-sm gap-2 items-center justify-between'>
-          <div className='flex gap-2 items-center justify-center text-xs dark:text-gray-300'>
+          <div className='flex gap-2 text-stone-700 dark:text-stone-200 items-center justify-center text-xs'>
             <time>{format(parseISO(post.date), 'LLLL d, yyyy')}</time>
             {'•'}
             <span>{`${

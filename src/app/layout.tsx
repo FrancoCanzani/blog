@@ -1,27 +1,26 @@
 import './globals.css';
 import ToggleProvider from './components/toggleProvider';
 import type { Metadata } from 'next';
-import { Open_Sans } from 'next/font/google';
-import Footer from './components/footer';
+import { Inter } from 'next/font/google';
 import Header from './components/header';
 import SessionProvider from './components/sessionProvider';
 import { getServerSession } from 'next-auth';
 import { Toaster } from 'sonner';
 
-const open = Open_Sans({ subsets: ['latin'] });
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: {
-    template: '%s | Notes',
-    default: 'Notes',
+    template: '%s | Things I Think About',
+    default: 'TITA',
   },
   description: 'Another Programming Blog',
-  keywords: ['Next.js', 'React', 'JavaScript', 'Programming'],
+  keywords: ['Next.js', 'React', 'JavaScript', 'Programming', 'Supply Chain'],
   metadataBase: new URL('https://franconotes.vercel.app/'),
   openGraph: {
-    title: 'Notes',
+    title: 'Things I Think About',
     url: 'https://franconotes.vercel.app',
-    siteName: 'Notes',
+    siteName: 'Things I Think About',
     locale: 'en_US',
     type: 'website',
   },
@@ -39,7 +38,7 @@ export const metadata: Metadata = {
     },
   },
   twitter: {
-    title: 'Lee Robinson',
+    title: 'Things I Think About',
     card: 'summary_large_image',
   },
 };
@@ -54,16 +53,15 @@ export default async function RootLayout({
   return (
     <html lang='en'>
       <body
-        className={`${open.className} dark:bg-[#0c0a09] dark:text-[#f6f3f1] antialiased m-auto`}
+        className={`${inter.className} dark:bg-stone-900 dark:text-stone-100 bg-stone-200 text-stone-900 antialiased min-h-screen m-auto`}
       >
         <SessionProvider session={session}>
           <ToggleProvider>
-            <main className='p-4 min-h-screen'>
+            <main className='p-4 max-w-4xl mx-auto'>
               <Header />
               {children}
               <Toaster />
             </main>
-            <Footer />
           </ToggleProvider>
         </SessionProvider>
       </body>

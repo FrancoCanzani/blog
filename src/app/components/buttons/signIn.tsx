@@ -7,7 +7,7 @@ export default function SignIn() {
   if (session) {
     return (
       <button
-        className='bg-neutral-800 text-gray-100 border-gray-950 border text-sm rounded-sm px-2 py-1'
+        className='bg-stone-800 hover:opacity-85 text-stone-100 text-sm rounded-sm px-2 py-1'
         onClick={() => signOut()}
       >
         Sign out
@@ -16,7 +16,7 @@ export default function SignIn() {
   }
   return (
     <button
-      className='bg-neutral-800 text-gray-100 border-gray-950 border text-sm rounded-sm px-2 py-1'
+      className='bg-stone-800 hover:opacity-85 text-stone-100 text-sm rounded-sm px-2 py-1'
       onClick={() => signIn('github')}
     >
       Sign in to comment
