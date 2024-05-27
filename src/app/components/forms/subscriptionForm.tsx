@@ -41,7 +41,7 @@ export default function SubscriptionForm() {
         <input
           id='email'
           name='email'
-          className='bg-stone-100 w-3/4 dark:bg-stone-800 dark:text-stone-100 rounded-sm p-1'
+          className='bg-stone-100 w-3/4 dark:bg-stone-800 dark:text-stone-100 placeholder:dark:text-stone-200 placeholder:text-stone-400 rounded-sm p-1'
           placeholder='email@provider.com'
         />
         <SubmitButton text='Subscribe' className='w-1/4' />

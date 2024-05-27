@@ -2,6 +2,8 @@ import { PreviewPosts } from './components/previewPosts';
 import SubscriptionForm from './components/forms/subscriptionForm';
 
 export default function Home() {
+  const year = new Date().getFullYear();
+
   return (
     <main className='flex flex-col items-start justify-center space-y-8'>
       <section className='w-full'>
@@ -20,6 +22,16 @@ export default function Home() {
         <SubscriptionForm />
       </section>
       <PreviewPosts />
+      <footer className='flex items-center justify-between w-full text-xs text-stone-700 dark:text-stone-200 max-w-80 m-auto'>
+        <span className=''>© {year}. All Rights Reserved.</span>
+        <a
+          href='https://github.com/FrancoCanzani/blog'
+          target='_blank'
+          className='hover:underline'
+        >
+          Source Code
+        </a>
+      </footer>
     </main>
   );
 }

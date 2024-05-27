@@ -12,7 +12,7 @@ export default function PostCard({ post }: { post: Post }) {
   });
 
   return (
-    <div className='dark:text-stone-100 p-2 border border-stone-300 rounded-sm flex flex-col'>
+    <div className='dark:text-stone-100 p-2 border border-stone-300 rounded-sm min-h-44 justify-between flex flex-col'>
       <div className='flex items-start flex-col justify-between'>
         <Link
           className='text-xl mb-1 font-semibold leading-tight hover:underline visited:opacity-85 text-stone-900 dark:text-stone-100'

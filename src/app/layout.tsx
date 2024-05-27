@@ -12,7 +12,7 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: {
     template: '%s | Things I Think About',
-    default: 'TITA',
+    default: 'Things I Think About',
   },
   description: 'Another Programming Blog',
   keywords: ['Next.js', 'React', 'JavaScript', 'Programming', 'Supply Chain'],

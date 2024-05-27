@@ -17,13 +17,14 @@ export async function GET(request: NextRequest) {
           justifyContent: 'center',
           letterSpacing: '-.02em',
           fontWeight: 700,
-          background: 'white',
+          background: '#E7E5E4',
         }}
       >
         <div
           style={{
             display: 'flex',
             flexWrap: 'wrap',
+            borderRadius: '0.125rem',
             justifyContent: 'center',
             padding: '20px 50px',
             margin: '0 42px',
@@ -31,7 +32,7 @@ export async function GET(request: NextRequest) {
             width: 'auto',
             maxWidth: 650,
             textAlign: 'center',
-            backgroundColor: 'black',
+            backgroundColor: '#1C1917',
             color: 'white',
             lineHeight: 1.4,
           }}
