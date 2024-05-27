@@ -1,4 +1,5 @@
 import { PreviewPosts } from './components/previewPosts';
+import SubscriptionForm from './components/form/subscriptionForm';
 
 export default function Home() {
   return (
@@ -11,6 +12,12 @@ export default function Home() {
           insights thought-provoking and engaging. Please share your thoughts
           and join the conversation in the comments section.
         </p>
+      </section>
+      <section>
+        <h2 className='font-medium mb-2 underline text-sm text-stone-700 dark:text-stone-200'>
+          Subscribe to receive new post alerts
+        </h2>
+        <SubscriptionForm />
       </section>
       <PreviewPosts />
     </main>

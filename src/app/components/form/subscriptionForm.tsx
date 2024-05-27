@@ -19,7 +19,7 @@ export default function SubscriptionForm() {
       if (validation.success) {
         await addEmail(FormData);
         formRef?.current?.reset();
-        toast.success('Subscription successful!');
+        toast.success('Thanks for subscribing!');
       } else {
         if (validation.error.errors[0].code === 'invalid_string') {
           toast.error('Please enter a valid email address.');
@@ -34,19 +34,17 @@ export default function SubscriptionForm() {
 
   return (
     <form ref={formRef} action={handleSubscribe}>
-      <div className='flex flex-col my-3'>
-        <label htmlFor='email' className='text-xs font-semibold mb-1'>
-          Email
-        </label>
-        <div className='flex items-center w-full space-x-1'>
-          <input
-            id='email'
-            name='email'
-            className='bg-stone-100 w-3/4 dark:bg-neutral-800 dark:text-stone-100 dark:border-stone-950 border rounded-sm p-1'
-            placeholder='email@provider.com'
-          />
-          <SubmitButton text='Subscribe' className='w-1/4' />
-        </div>
+      <label htmlFor='email' className='sr-only'>
+        Email
+      </label>
+      <div className='flex items-center w-full space-x-1'>
+        <input
+          id='email'
+          name='email'
+          className='bg-stone-100 w-3/4 dark:bg-stone-800 dark:text-stone-100 rounded-sm p-1'
+          placeholder='email@provider.com'
+        />
+        <SubmitButton text='Subscribe' className='w-1/4' />
       </div>
     </form>
   );
