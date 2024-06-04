@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { allPosts, Post } from 'contentlayer/generated';
-import Link from 'next/link';
+import { Link } from 'next-view-transitions';
 import { useSearchParams } from 'next/navigation';
 
 export default function AllPosts() {
@@ -35,59 +35,57 @@ export default function AllPosts() {
   });
 
   return (
-    <main className='flex flex-col items-start justify-start'>
-      <section className='flex-1 w-full'>
-        <div className='flex items-end justify-between w-full mb-4 text-sm'>
-          <h2 className='font-medium capitalize underline text-stone-700 dark:text-stone-200'>
-            Search posts
-          </h2>
-          <input
-            type='text'
-            placeholder='Filter by keywords...'
-            className='bg-stone-100 rounded-sm w-fit dark:bg-stone-800 dark:text-stone-100 placeholder:dark:text-stone-200 placeholder:text-stone-400 p-1'
-            onChange={handleFilterChange}
-          />
-        </div>
-        <p className='rounded-sm dark:bg-stone-800 border-l-stone-800 dark:border-l-stone-100 border-l-4 dark:text-stone-100 text-sm bg-stone-100 p-2 mb-4'>
-          This search functionality utilizes the{' '}
-          <a
-            className='text-blue-600 hover:underline'
-            target='_blank'
-            href='https://developer.mozilla.org/en-US/docs/Web/Text_fragments'
-          >
-            Text Fragments API
-          </a>{' '}
-          to push the search inputs to the parameters and redirect to the
-          searched fragment. Please note that the styling with{' '}
-          <a
-            className='text-blue-600 hover:underline'
-            target='_blank'
-            href='https://developer.mozilla.org/en-US/docs/Web/CSS/::target-text'
-          >
-            ::target-text
-          </a>{' '}
-          is still experimental and you may experience differences in how the
-          highlighted text fragments are displayed depending on the browser you
-          are using.
-        </p>
+    <main className='flex-auto mt-6 flex flex-col items-start'>
+      <div className='flex start justify-between w-full mb-4 text-sm'>
+        <h2 className='font-medium capitalize underline text-stone-700 dark:text-stone-200'>
+          Search posts
+        </h2>
+        <input
+          type='text'
+          placeholder='Filter by keywords...'
+          className='bg-stone-100 rounded-sm w-fit dark:bg-stone-800 dark:text-stone-100 placeholder:dark:text-stone-200 placeholder:text-stone-400 p-1'
+          onChange={handleFilterChange}
+        />
+      </div>
+      <p className='rounded-sm dark:bg-stone-800 border-l-stone-800 dark:border-l-stone-100 border-l-4 dark:text-stone-100 text-sm bg-stone-100 p-2 mb-4'>
+        This search functionality utilizes the{' '}
+        <a
+          className='text-blue-600 hover:underline'
+          target='_blank'
+          href='https://developer.mozilla.org/en-US/docs/Web/Text_fragments'
+        >
+          Text Fragments API
+        </a>{' '}
+        to push the search inputs to the parameters and redirect to the searched
+        fragment. Please note that the styling with{' '}
+        <a
+          className='text-blue-600 hover:underline'
+          target='_blank'
+          href='https://developer.mozilla.org/en-US/docs/Web/CSS/::target-text'
+        >
+          ::target-text
+        </a>{' '}
+        is still experimental and you may experience differences in how the
+        highlighted text fragments are displayed depending on the browser you
+        are using.
+      </p>
 
-        <ol className='grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-3'>
-          {filteredPosts.length > 0 ? (
-            filteredPosts.map((post) => (
-              <MiniPostCard
-                post={post}
-                filterKeywords={filterKeywords}
-                key={post._id}
-              />
-            ))
-          ) : (
-            <p className='text-center w-full'>
-              No posts found with the keyword:{' '}
-              <span className='underline'>{filterKeywords}</span>
-            </p>
-          )}
-        </ol>
-      </section>
+      <ol className='flex flex-col space-y-4 w-full'>
+        {filteredPosts.length > 0 ? (
+          filteredPosts.map((post) => (
+            <MiniPostCard
+              post={post}
+              filterKeywords={filterKeywords}
+              key={post._id}
+            />
+          ))
+        ) : (
+          <p className='text-center w-full'>
+            No posts found with the keyword:{' '}
+            <span className='underline'>{filterKeywords}</span>
+          </p>
+        )}
+      </ol>
     </main>
   );
 }
@@ -109,7 +107,7 @@ function MiniPostCard({
   };
 
   return (
-    <div className='dark:text-stone-100 p-2 border border-stone-300 rounded-sm flex flex-col'>
+    <div className='dark:text-stone-100 p-2 w-full border dark:border-stone-600 border-stone-300 rounded-sm flex flex-col'>
       <div className='flex items-start flex-col justify-between space-y-1'>
         <ul className='flex flex-wrap items-center justify-start text-xs capitalize space-x-1'>
           {post.keywords?.map((keyword, index) => (

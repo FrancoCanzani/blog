@@ -1,45 +1,31 @@
-import Link from 'next/link';
+import { Link } from 'next-view-transitions';
 import { Post } from 'contentlayer/generated';
-import calculateReadingTime from '../utils/calculateReadingTime';
+import { getViewCount } from '../utils/getViewCount';
+import { Eye } from 'lucide-react';
 
-export default function PostCard({ post }: { post: Post }) {
-  const readingTime = calculateReadingTime(post.body.raw);
+export default async function PostCard({ post }: { post: Post }) {
   const postDate = new Date(post.date);
   const formattedDate = postDate.toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
   });
+  const views = await getViewCount(post._id);
 
   return (
-    <div className='dark:text-stone-100 p-2 border border-stone-300 rounded-sm min-h-44 justify-between flex flex-col'>
-      <div className='flex items-start flex-col justify-between'>
+    <div className='dark:text-stone-100 border-y py-3 border-stone-300 dark:border-stone-600 text-sm gap-x-3 flex items-center justify-between rounded-sm w-full'>
+      <div className='flex items-center justify-start gap-x-3 flex-1 '>
+        <span>{formattedDate}</span>
         <Link
-          className='text-xl mb-1 font-semibold leading-tight hover:underline visited:opacity-85 text-stone-900 dark:text-stone-100'
+          className='font-semibold hover:underline visited:opacity-85 text-stone-900 dark:text-stone-100'
           href={`/posts/${post._raw.flattenedPath}`}
         >
           {post.title}
         </Link>
-        <ul className='flex items-center justify-start text-xs capitalize space-x-1 text-stone-700 dark:text-stone-200'>
-          {post.keywords?.map((keyword, index) => (
-            <li key={keyword}>
-              {keyword}
-              {index != post.keywords.length - 1 && ','}
-            </li>
-          ))}
-        </ul>
-        <p className='text-sm text-pretty my-2'>{post.description}</p>
       </div>
-      <div className='flex items-center justify-between text-stone-700 dark:text-stone-200 text-xs'>
-        <p>{formattedDate}</p>
-        <div className='flex items-center justify-start'>
-          <p>
-            {readingTime <= 1
-              ? '< 1 minute read'
-              : `${calculateReadingTime(post.body.raw)} minutes read`}{' '}
-          </p>
-        </div>
-      </div>
+      <span className='inline-flex gap-x-1 items-center'>
+        <Eye size={14} className='opacity-75' aria-label='views' /> {views}
+      </span>
     </div>
   );
 }

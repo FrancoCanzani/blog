@@ -9,7 +9,7 @@ export default async function CommentSection({ postID }: { postID: string }) {
   const session = await auth();
 
   return (
-    <section className='mt-8'>
+    <section className='my-8 w-full'>
       <div className='pt-4 pb-2 dark:border-stone-200 border-b border-stone-700 flex items-center justify-between'>
         <h2 className='font-semibold'>Comments</h2>
         {session ? <SignOut /> : <SignIn />}

@@ -6,6 +6,8 @@ import Header from './components/header';
 import SessionProvider from './components/sessionProvider';
 import { Toaster } from 'sonner';
 import { auth } from 'auth';
+import { ViewTransitions } from 'next-view-transitions';
+import Footer from './components/footer';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -51,20 +53,23 @@ export default async function RootLayout({
   const session = await auth();
 
   return (
-    <html lang='en'>
-      <body
-        className={`${inter.className} dark:bg-stone-900 max-w-3xl dark:text-stone-100 bg-stone-200 text-stone-900 antialiased min-h-screen m-auto`}
-      >
-        <SessionProvider session={session}>
-          <ToggleProvider>
-            <main className='p-4 mx-auto'>
-              <Header />
-              {children}
+    <ViewTransitions>
+      <html lang='en'>
+        <body
+          className={`${inter.className} dark:bg-stone-900 m-auto max-w-3xl dark:text-stone-100 bg-stone-200 text-stone-900 antialiased`}
+        >
+          <SessionProvider session={session}>
+            <ToggleProvider>
+              <main className='mx-2 md:mx-4 flex flex-col justify-between items-start p-3 md:p-6 min-h-[calc(100vh-65px)]'>
+                <Header />
+                {children}
+              </main>
+              <Footer />
               <Toaster />
-            </main>
-          </ToggleProvider>
-        </SessionProvider>
-      </body>
-    </html>
+            </ToggleProvider>
+          </SessionProvider>
+        </body>
+      </html>
+    </ViewTransitions>
   );
 }

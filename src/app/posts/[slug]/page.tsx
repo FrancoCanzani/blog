@@ -1,10 +1,7 @@
 import { allPosts, Post } from 'contentlayer/generated';
-import { getMDXComponent } from 'next-contentlayer/hooks';
-import { format, parseISO } from 'date-fns';
-import calculateReadingTime from '@/app/utils/calculateReadingTime';
 import CommentSection from '@/app/components/commentSection';
-
 import { Metadata, ResolvingMetadata } from 'next';
+import BlogPost from '@/app/components/post';
 
 type Props = {
   params: { slug: string };
@@ -51,36 +48,14 @@ export async function generateMetadata(
 export default function Post({ params }: { params: { slug: string } }) {
   const post = allPosts.find((post) => post._raw.flattenedPath === params.slug);
 
-  let MDXContent;
-
   if (!post) {
     return <div>404</div>;
   } else {
-    MDXContent = getMDXComponent(post.body.code);
-  }
-
-  return (
-    <main className='flex flex-col items-start justify-start'>
-      <div className='flex-1 w-full lg:max-w-3xl'>
-        <h1 className='font-bold text-xl sm:text-2xl text-balance tracking-tighter'>
-          {post.title}
-        </h1>
-        <div className='flex mt-2 mb-8 text-sm gap-2 items-center justify-between'>
-          <div className='flex gap-2 text-stone-700 dark:text-stone-200 items-center justify-center text-xs'>
-            <time>{format(parseISO(post.date), 'LLLL d, yyyy')}</time>
-            {'•'}
-            <span>{`${
-              calculateReadingTime(post.body.raw) <= 1
-                ? '< 1 minute read'
-                : `${calculateReadingTime(post.body.raw)} minutes read`
-            }`}</span>
-          </div>
-        </div>
-        <article className='prose-sm dark:prose-invert'>
-          <MDXContent />
-        </article>
+    return (
+      <>
+        <BlogPost post={post} />
         <CommentSection postID={post._raw.flattenedPath} />
-      </div>
-    </main>
-  );
+      </>
+    );
+  }
 }

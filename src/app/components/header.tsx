@@ -1,9 +1,9 @@
 import ThemeSwitch from './themeSwitch';
-import Link from 'next/link';
+import { Link } from 'next-view-transitions';
 
 export default function Header() {
   return (
-    <header className='pb-1 text-sm flex mb-5 items-center font-medium justify-between w-full'>
+    <header className='text-sm flex w-full items-center font-medium justify-between'>
       <Link href={'/'} className='font-semibold capitalize'>
         Things I think about
       </Link>
