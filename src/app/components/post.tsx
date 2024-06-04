@@ -2,7 +2,6 @@
 
 import { format, parseISO } from 'date-fns';
 import calculateReadingTime from '@/app/utils/calculateReadingTime';
-import CommentSection from '@/app/components/commentSection';
 import type { Post } from 'contentlayer/generated';
 import { useEffect } from 'react';
 import { getMDXComponent } from 'next-contentlayer/hooks';
@@ -22,7 +21,7 @@ export default function BlogPost({ post }: { post: Post }) {
 
   return (
     <main className='flex flex-col mt-6 items-start justify-start'>
-      <div className='flex-1 w-full lg:max-w-3xl'>
+      <div className='w-full'>
         <h1 className='font-bold text-xl sm:text-2xl text-balance tracking-tighter'>
           {post.title}
         </h1>
@@ -37,7 +36,7 @@ export default function BlogPost({ post }: { post: Post }) {
             }`}</span>
           </div>
         </div>
-        <article className='prose-sm dark:prose-invert'>
+        <article className='prose-sm text-xs max-w-fit [&_pre]:bg-stone-100 [&_h3]:font-medium [&_pre]:dark:bg-stone-800 dark:prose-invert'>
           <MDXContent />
         </article>
       </div>

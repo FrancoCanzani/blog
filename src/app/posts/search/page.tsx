@@ -36,7 +36,7 @@ export default function AllPosts() {
 
   return (
     <main className='flex-auto mt-6 flex flex-col items-start'>
-      <div className='flex start justify-between w-full mb-4 text-sm'>
+      <div className='flex items-end justify-between w-full mb-4 text-sm'>
         <h2 className='font-medium capitalize underline text-stone-700 dark:text-stone-200'>
           Search posts
         </h2>

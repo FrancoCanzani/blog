@@ -15,9 +15,10 @@ export default async function PostCard({ post }: { post: Post }) {
   return (
     <div className='dark:text-stone-100 border-y py-3 border-stone-300 dark:border-stone-600 text-sm gap-x-3 flex items-center justify-between rounded-sm w-full'>
       <div className='flex items-center justify-start gap-x-3 flex-1 '>
-        <span>{formattedDate}</span>
+        <span className='hidden sm:block'>{formattedDate}</span>
+        <span className='sm:hidden'>{postDate.getFullYear()}</span>
         <Link
-          className='font-semibold hover:underline visited:opacity-85 text-stone-900 dark:text-stone-100'
+          className='font-semibold truncate hover:underline visited:opacity-85 text-stone-900 dark:text-stone-100'
           href={`/posts/${post._raw.flattenedPath}`}
         >
           {post.title}

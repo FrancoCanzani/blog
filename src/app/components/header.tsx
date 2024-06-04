@@ -4,7 +4,7 @@ import { Link } from 'next-view-transitions';
 export default function Header() {
   return (
     <header className='text-sm flex w-full items-center font-medium justify-between'>
-      <Link href={'/'} className='font-semibold capitalize'>
+      <Link href={'/'} className='font-semibold capitalize hover:underline'>
         Things I think about
       </Link>
       <div className='items-center gap-3 flex'>
