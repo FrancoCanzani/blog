@@ -25,7 +25,7 @@ export default function BlogPost({ post }: { post: Post }) {
         <h1 className='font-bold text-xl sm:text-2xl text-balance tracking-tighter'>
           {post.title}
         </h1>
-        <div className='flex mt-2 mb-8 text-sm gap-2 items-center justify-between'>
+        <div className='flex mt-2 mb-4 text-sm gap-2 items-center justify-between'>
           <div className='flex gap-2 text-stone-700 dark:text-stone-200 items-center justify-center text-xs'>
             <time>{format(parseISO(post.date), 'LLLL d, yyyy')}</time>
             {'•'}

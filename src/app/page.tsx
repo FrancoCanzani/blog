@@ -16,7 +16,7 @@ export default function Home() {
         </section>
         <PreviewPosts />
         <section>
-          <h2 className='font-medium mb-4 underline text-sm text-stone-700 dark:text-stone-200'>
+          <h2 className='font-medium capitalize mb-4 underline text-sm text-stone-700 dark:text-stone-200'>
             Subscribe to receive new post alerts
           </h2>
           <SubscriptionForm />

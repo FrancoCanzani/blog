@@ -60,7 +60,7 @@ export default async function RootLayout({
         >
           <SessionProvider session={session}>
             <ToggleProvider>
-              <main className='mx-2 md:mx-4 flex flex-col justify-between items-start p-3 md:p-6 min-h-[calc(100vh-65px)]'>
+              <main className='mx-2 md:mx-4 flex flex-col justify-between items-start p-3 md:p-6 min-h-[calc(100vh-80px)]'>
                 <Header />
                 {children}
               </main>
