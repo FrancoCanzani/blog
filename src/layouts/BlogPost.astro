@@ -4,6 +4,7 @@ import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import FormattedDate from "../components/FormattedDate.astro";
+import { ViewTransitions } from "astro:transitions";
 
 type Props = CollectionEntry<"blog">["data"];
 const { title, description, pubDate, updatedDate, heroImage, keywords } =
@@ -12,9 +13,10 @@ const { title, description, pubDate, updatedDate, heroImage, keywords } =
 
 <html lang="en">
   <head>
+    <ViewTransitions />
     <BaseHead title={title} description={description} />
   </head>
-  <body class="p-4 md:px-8 md:py-4">
+  <body class="p-4 md:px-8 md:py-4 max-w-4xl mx-auto">
     <Header />
     <main class="w-full mx-auto">
       <article class="prose prose-invert mx-auto">
